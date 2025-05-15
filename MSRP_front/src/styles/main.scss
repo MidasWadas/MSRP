@@ -1,0 +1,306 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $text-dark;
+  background-color: $bg-page;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $spacing-md;
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-dark;
+}
+
+h1 {
+  font-size: $font-size-3xl;
+}
+
+h2 {
+  font-size: $font-size-2xl;
+}
+
+h3 {
+  font-size: $font-size-xl;
+}
+
+h4 {
+  font-size: $font-size-lg;
+}
+
+h5 {
+  font-size: $font-size-md;
+}
+
+h6 {
+  font-size: $font-size-base;
+}
+
+p {
+  margin-bottom: $spacing-md;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: color $transition-normal ease;
+  
+  &:hover {
+    color: $link-hover;
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: $link-active;
+  }
+
+  &:visited {
+    color: $link-visited;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: $spacing-0 auto;
+  padding: 0 $spacing-md;
+  
+  @include responsive(md) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+.page-container {
+  padding-top: $header-height;
+  min-height: 100vh;
+}
+
+.content-container {
+  margin-left: $sidebar-width;
+  padding: $spacing-lg;
+  transition: margin-left $transition-normal ease;
+  background-color: $bg-content;
+  
+  &.sidebar-collapsed {
+    margin-left: $sidebar-collapsed-width;
+  }
+  
+  @include responsive(xs) {
+    margin-left: 0;
+    padding: $spacing-md;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-bold {
+  font-weight: $font-weight-bold;
+}
+
+.mt-1 { margin-top: $spacing-sm; }
+.mt-2 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-8 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-8 { margin-bottom: $spacing-xl; }
+
+.ml-1 { margin-left: $spacing-sm; }
+.ml-2 { margin-left: $spacing-md; }
+.ml-4 { margin-left: $spacing-lg; }
+.ml-8 { margin-left: $spacing-xl; }
+
+.mr-1 { margin-right: $spacing-sm; }
+.mr-2 { margin-right: $spacing-md; }
+.mr-4 { margin-right: $spacing-lg; }
+.mr-8 { margin-right: $spacing-xl; }
+
+.p-1 { padding: $spacing-sm; }
+.p-2 { padding: $spacing-md; }
+.p-4 { padding: $spacing-lg; }
+.p-8 { padding: $spacing-xl; }
+
+.card {
+  @include card;
+  margin-bottom: $spacing-lg;
+  background-color: $bg-card;
+  border: 1px solid $border-light;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.text-dark { color: $text-dark; }
+.text-medium { color: $text-medium; }
+.text-light { color: $text-light; }
+.text-accent { color: $text-accent; }
+.text-primary { color: $text-primary; }
+.text-white { color: $text-white; }
+
+.text-primary-xdark { color: $primary-xdark; }
+.text-primary-dark { color: $primary-dark; }
+.text-primary-medium { color: $primary-medium; }
+.text-primary-light { color: $primary-light; }
+.text-primary-xlight { color: $primary-xlight; }
+
+.text-accent-xdark { color: $accent-xdark; }
+.text-accent-dark { color: $accent-dark; }
+.text-accent-medium { color: $accent-medium; }
+.text-accent-light { color: $accent-light; }
+.text-accent-xlight { color: $accent-xlight; }
+
+.bg-page { background-color: $bg-page; }
+.bg-card { background-color: $bg-card; }
+.bg-content { background-color: $bg-content; }
+.bg-sidebar { background-color: $bg-sidebar; }
+.bg-header { background-color: $bg-header; }
+.bg-footer { background-color: $bg-footer; }
+.bg-light { background-color: $bg-light; }
+.bg-dark { background-color: $bg-dark; }
+
+.bg-primary-xdark { background-color: $primary-xdark; }
+.bg-primary-dark { background-color: $primary-dark; }
+.bg-primary-medium { background-color: $primary-medium; }
+.bg-primary-light { background-color: $primary-light; }
+.bg-primary-xlight { background-color: $primary-xlight; }
+
+.bg-accent-xdark { background-color: $accent-xdark; }
+.bg-accent-dark { background-color: $accent-dark; }
+.bg-accent-medium { background-color: $accent-medium; }
+.bg-accent-light { background-color: $accent-light; }
+.bg-accent-xlight { background-color: $accent-xlight; }
+
+.bg-secondary-xdark { background-color: $secondary-xdark; }
+.bg-secondary-dark { background-color: $secondary-dark; }
+.bg-secondary-medium { background-color: $secondary-medium; }
+.bg-secondary-light { background-color: $secondary-light; }
+.bg-secondary-xlight { background-color: $secondary-xlight; }
+
+.border-light { border-color: $border-light; }
+.border-medium { border-color: $border-medium; }
+.border-dark { border-color: $border-dark; }
+.border-primary { border-color: $border-primary; }
+.border-accent { border-color: $border-accent; }
+
+.text-success { color: $success; }
+.text-error { color: $error; }
+.text-warning { color: $warning; }
+.text-info { color: $info; }
+
+.bg-success { background-color: $success; }
+.bg-error { background-color: $error; }
+.bg-warning { background-color: $warning; }
+.bg-info { background-color: $info; }
+
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  border-radius: 4px;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  cursor: pointer;
+  transition: all $transition-normal ease;
+  border: none;
+  outline: none;
+  
+  &-primary {
+    background-color: $btn-primary;
+    color: $text-white;
+    
+    &:hover {
+      background-color: $btn-primary-hover;
+    }
+    
+    &:active {
+      background-color: $btn-primary-active;
+    }
+  }
+  
+  &-secondary {
+    background-color: $btn-secondary;
+    color: $text-dark;
+    
+    &:hover {
+      background-color: $btn-secondary-hover;
+    }
+    
+    &:active {
+      background-color: $btn-secondary-active;
+    }
+  }
+  
+  &-accent {
+    background-color: $btn-accent;
+    color: $text-white;
+    
+    &:hover {
+      background-color: $btn-accent-hover;
+    }
+    
+    &:active {
+      background-color: $btn-accent-active;
+    }
+  }
+  
+  &-outline {
+    background-color: transparent;
+    border: 1px solid currentColor;
+    
+    &.btn-primary {
+      color: $btn-primary;
+      
+      &:hover {
+        background-color: rgba($btn-primary, 0.1);
+      }
+    }
+    
+    &.btn-secondary {
+      color: $btn-secondary;
+      
+      &:hover {
+        background-color: rgba($btn-secondary, 0.1);
+      }
+    }
+    
+    &.btn-accent {
+      color: $btn-accent;
+      
+      &:hover {
+        background-color: rgba($btn-accent, 0.1);
+      }
+    }
+  }
+}

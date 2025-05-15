@@ -1,0 +1,101 @@
+@import '@styles/variables.scss';
+
+.m-select {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-md;
+  
+  &--full-width {
+    width: 100%;
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: $font-weight-medium;
+    color: $text-dark;
+    font-size: $font-size-sm;
+  }
+  
+  &__required {
+    color: $error;
+    margin-left: $spacing-xs;
+  }
+  
+  &__wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  &__field {
+    width: 100%;
+    padding: $spacing-sm;
+    border: $border-width-thin solid $border-medium;
+    border-radius: $border-radius-md;
+    font-size: $font-size-md;
+    transition: all $transition-normal ease;
+    background-color: $bg-light;
+    color: $text-dark;
+    appearance: none;
+    padding-right: 32px; // Space for the custom arrow
+    cursor: pointer;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-medium;
+      box-shadow: 0 0 0 2px rgba($primary-medium, 0.2);
+    }
+  }
+  
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid $text-medium;
+    border-bottom: 2px solid $text-medium;
+    pointer-events: none;
+    transform: translateY(-70%) rotate(45deg);
+    transition: transform $transition-normal ease;
+  }
+  
+  &__field:focus + &__arrow {
+    transform: translateY(-30%) rotate(225deg);
+    border-color: $primary-medium;
+  }
+  
+  &--error &__field {
+    border-color: $error;
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($error, 0.2);
+    }
+  }
+  
+  &--error &__arrow {
+    border-color: $error;
+  }
+  
+  &--disabled &__field {
+    background-color: $secondary-light;
+    border-color: $border-light;
+    color: $text-medium;
+    cursor: not-allowed;
+  }
+  
+  &--disabled &__arrow {
+    border-color: $text-medium;
+  }
+  
+  &__message {
+    margin-top: $spacing-xs;
+    font-size: $font-size-xs;
+    color: $text-medium;
+    
+    &--error {
+      color: $error;
+    }
+  }
+}

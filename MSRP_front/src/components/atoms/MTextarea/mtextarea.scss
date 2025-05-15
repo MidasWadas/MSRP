@@ -1,0 +1,73 @@
+@import '@styles/variables.scss';
+
+.m-textarea {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-md;
+  
+  &--full-width {
+    width: 100%;
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: $font-weight-medium;
+    color: $text-dark;
+    font-size: $font-size-sm;
+  }
+  
+  &__required {
+    color: $error;
+    margin-left: $spacing-xs;
+  }
+  
+  &__field {
+    width: 100%;
+    padding: $spacing-sm;
+    border: $border-width-thin solid $border-medium;
+    border-radius: $border-radius-md;
+    font-size: $font-size-md;
+    transition: all $transition-normal ease;
+    background-color: $bg-light;
+    color: $text-dark;
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-medium;
+      box-shadow: 0 0 0 2px rgba($primary-medium, 0.2);
+    }
+    
+    &::placeholder {
+      color: $text-medium;
+    }
+  }
+  
+  &--error &__field {
+    border-color: $error;
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($error, 0.2);
+    }
+  }
+  
+  &--disabled &__field {
+    background-color: $secondary-light;
+    border-color: $border-light;
+    color: $text-medium;
+    cursor: not-allowed;
+  }
+  
+  &__message {
+    margin-top: $spacing-xs;
+    font-size: $font-size-xs;
+    color: $text-medium;
+    
+    &--error {
+      color: $error;
+    }
+  }
+}
