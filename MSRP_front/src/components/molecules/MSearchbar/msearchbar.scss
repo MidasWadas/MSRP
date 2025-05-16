@@ -1,0 +1,167 @@
+@import '../../../styles/variables';
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  border-radius: $border-radius-md;
+  background-color: $bg-light;
+  border: 1px solid $border-medium;
+  padding: 0 $spacing-sm;
+  transition: all $transition-normal ease;
+  
+  &--focused {
+    border-color: $primary-medium;
+    box-shadow: 0 0 0 2px rgba($primary-light, 0.3);
+  }
+  
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    color: $text-medium;
+    
+    .icon {
+      font-size: 18px;
+    }
+    
+    &--clear {
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      padding: 0;
+      
+      &:hover {
+        color: $text-dark;
+      }
+    }
+  }
+  
+  &__input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    background: transparent;
+    padding: 0 $spacing-xs;
+    color: $text-dark;
+    font-size: $font-size-base;
+    
+    &:focus {
+      outline: none;
+    }
+    
+    &::placeholder {
+      color: $text-light;
+    }
+  }
+}
+
+// For when icons aren't available, use these basic replacements
+.icon-search:before {
+  content: "🔍";
+}
+
+.icon-close:before {
+  content: "✕";
+}
+
+.m-searchbar-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+
+  &--compact {
+    margin-bottom: 0;
+     
+    .m-input {
+      margin-bottom: 0;
+      
+      .m-input__label {
+        display: none;
+      }
+      
+      .m-input__field {
+        height: 40px;
+        padding: 8px 12px; /* Increased vertical padding for better text spacing */
+        line-height: normal; /* Use normal line height for better text positioning */
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+.m-searchbar-container {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
+
+.m-searchbar {
+  width: 100%;
+  height: 40px; /* Matching the exact height of the medium button */
+  line-height: 40px; /* Ensuring consistent line height */
+  padding: 0 40px 0 12px;
+  border: 1px solid $border-medium;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  color: $text-dark;
+  transition: all $transition-normal ease;
+  background-color: $bg-light;
+  box-sizing: border-box; /* Ensuring padding is included in the height */
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-medium;
+    box-shadow: 0 0 0 2px rgba($primary-medium, 0.2);
+  }
+  
+  &::placeholder {
+    color: $text-medium;
+  }
+  
+  &:disabled {
+    background-color: $secondary-light;
+    border-color: $border-light;
+    color: $text-medium;
+    cursor: not-allowed;
+  }
+}
+
+.m-searchbar__icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: $text-medium;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+}
+
+// Animation for loading spinner
+@keyframes m-searchbar-spin {
+  to { transform: rotate(360deg); }
+}
+
+// Media query for small screens
+@media (max-width: 576px) {
+  .m-searchbar {
+    &__shortcut {
+      display: none;
+    }
+    
+    &__search-button {
+      padding: 0 $spacing-sm;
+    }
+  }
+}

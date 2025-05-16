@@ -1,0 +1,11 @@
+.m-toggle-with-label {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    &.m-toggle-with-label--left {
+      flex-direction: row-reverse;
+    }
+    &.m-toggle-with-label--right {
+      flex-direction: row;
+    }
+  }

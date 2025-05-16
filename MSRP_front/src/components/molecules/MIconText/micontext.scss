@@ -1,0 +1,82 @@
+@import '../../../styles/variables';
+
+.m-icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  // Elements styling
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  
+  &__text {
+    line-height: 1.4;
+  }
+  
+  // Position variants
+  &--position-left {
+    flex-direction: row;
+  }
+  
+  &--position-right {
+    flex-direction: row-reverse;
+  }
+  
+  &--position-top {
+    flex-direction: column;
+  }
+  
+  &--position-bottom {
+    flex-direction: column-reverse;
+  }
+  
+  // Size variants - applied via className prop
+  &--size-sm {
+    font-size: $font-size-sm;
+    
+    .m-icon-text__icon {
+      font-size: 1.1em;
+    }
+  }
+  
+  &--size-md {
+    font-size: $font-size-md;
+    
+    .m-icon-text__icon {
+      font-size: 1.2em;
+    }
+  }
+  
+  &--size-lg {
+    font-size: $font-size-lg;
+    
+    .m-icon-text__icon {
+      font-size: 1.25em;
+    }
+  }
+  
+  // Width option
+  &--full-width {
+    display: flex;
+    width: 100%;
+  }
+  
+  // Interactive variant
+  &--clickable {
+    cursor: pointer;
+    transition: all $transition-fast ease;
+    
+    &:hover {
+      opacity: 0.85;
+    }
+    
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
