@@ -1,0 +1,124 @@
+@import '../../../styles/variables';
+
+.m-filter-group {
+  margin-bottom: $spacing-md;
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &__title {
+    margin: 0;
+    color: $text-dark;
+  }
+  
+  &__header-actions {
+    display: flex;
+    gap: $spacing-xs;
+  }
+  
+  &__description {
+    margin-top: 0;
+    color: $text-medium;
+  }
+  
+  &__options {
+    display: flex;
+    
+    &--vertical {
+      flex-direction: column;
+      gap: $spacing-xs;
+    }
+    
+    &--horizontal {
+      flex-wrap: wrap;
+      gap: $spacing-sm $spacing-md;
+    }
+    
+    &--grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: $spacing-sm;
+    }
+  }
+  
+  &__option-wrapper {
+    display: flex;
+  }
+  
+  &__option-label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+  
+  &__option-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__option-count {
+    color: $text-medium;
+    font-size: 0.9em;
+    margin-left: 4px;
+  }
+  
+  &__footer {
+    margin-top: $spacing-sm;
+    padding-top: $spacing-xs;
+    border-top: 1px solid $neutral-light;
+  }
+  
+  &--small .m-filter-group__options {
+    gap: $spacing-xs;
+  }
+  
+  &--large .m-filter-group__options {
+    gap: $spacing-md;
+  }
+  
+  &--card {
+    padding: $spacing-md;
+    background-color: $bg-light;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-sm;
+  }
+  
+  &--outlined {
+    padding: $spacing-md;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-md;
+  }
+  
+  &--minimal .m-filter-group__title {
+    font-size: $font-size-sm;
+    color: $text-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.m-filter-action-btn {
+  background: transparent;
+  border: none;
+  color: $primary-medium;
+  font-size: $font-size-xs;
+  padding: 2px 4px;
+  cursor: pointer;
+  transition: all $transition-fast ease;
+  
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+  
+  &:disabled {
+    color: $neutral-medium;
+    cursor: not-allowed;
+    text-decoration: none;
+  }
+}
