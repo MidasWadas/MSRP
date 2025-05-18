@@ -1,0 +1,80 @@
+@import '../../../styles/variables';
+
+.recipe-detail-modal,
+.recipe-edit-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.recipe-detail-modal .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: 1px solid $border-light;
+}
+
+.recipe-edit-modal {
+  padding: $spacing-md;
+  
+  .form-group {
+    margin-bottom: $spacing-md;
+    
+    label {
+      display: block;
+      margin-bottom: $spacing-xs;
+      font-weight: 500;
+      color: $text-dark;
+      font-size: $font-size-sm;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: $spacing-sm;
+      border: 1px solid $border-medium;
+      border-radius: $border-radius-sm;
+      font-size: $font-size-md;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-medium;
+        box-shadow: 0 0 0 2px rgba($primary-medium, 0.2);
+      }
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+  
+  /* Add closer spacing between specific textareas */
+  .ingredients-instructions-container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm; /* Smaller gap between ingredients and instructions */
+    margin-bottom: $spacing-md;
+    
+    .m-textarea {
+      margin-bottom: $spacing-xs; /* Reduce the bottom margin of the textarea components */
+    }
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+  }
+}

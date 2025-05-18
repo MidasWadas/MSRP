@@ -1,0 +1,292 @@
+@import '@styles/variables.scss';
+
+.recipe-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+  .favorite-button {
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    background-color: rgba($dark-dark, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all $transition-normal ease;
+    color: white;
+    font-size: 20px;
+    z-index: 10; /* Ensure button is above the image */
+    
+    &:hover {
+      background-color: rgba($dark-dark, 0.7);
+    }
+    
+    &.active {
+      background-color: rgba($error, 0.5);
+      
+      &:hover {
+        background-color: rgba($error, 0.7);
+      }
+    }
+  }
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100%;
+  overflow: hidden;
+  
+  &.detail-mode {
+    background-color: $bg-card;
+    
+    .recipe-content {
+      padding: $spacing-md;
+    }
+  }
+  
+  .m-card__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    
+    .favorite-button {
+      position: absolute;
+      top: $spacing-sm;
+      right: $spacing-sm;
+      background-color: rgba($dark-dark, 0.5);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all $transition-normal ease;
+      color: white;
+      font-size: 20px;
+      
+      &:hover {
+        background-color: rgba($dark-dark, 0.7);
+      }
+      
+      &.active {
+        background-color: rgba($error, 0.5);
+        
+        &:hover {
+          background-color: rgba($error, 0.7);
+        }
+      }
+    }
+    
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .m-card__content {
+    flex: 1;
+    
+    .recipe-title {
+      font-size: $font-size-xl;
+      margin-top: 0;
+      margin-bottom: $spacing-xs;
+      color: $text-dark;
+    }
+    
+    .recipe-description {
+      color: $text-medium;
+      margin-bottom: $spacing-sm;
+    }
+    
+    .recipe-meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      margin-bottom: $spacing-xs;
+      
+      .meta-item {
+        display: flex;
+        align-items: center;
+        margin-right: $spacing-sm;
+        margin-bottom: $spacing-xs;
+        
+        .meta-icon {
+          margin-right: $spacing-xs;
+        }
+        
+        .meta-text {
+          font-size: $font-size-sm;
+          color: $text-medium;
+        }
+      }
+    }
+  }
+
+  .recipe-details {
+    margin-top: $spacing-md;
+    
+    h3 {
+      margin-bottom: $spacing-sm;
+      font-size: $font-size-md;
+      font-weight: $font-weight-semibold;
+      color: $text-dark;
+    }
+    
+    .ingredients, .instructions {
+      margin-bottom: $spacing-sm;
+    }
+    
+    &.compact-view {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-sm;
+      
+      .ingredients, .instructions {
+        flex: 1;
+        min-width: 300px;
+        margin-bottom: $spacing-xs;
+      }
+    }
+    
+    .ingredients-list,
+    .instructions-list {
+      list-style: none;
+      padding-left: 1.75rem;
+      margin: 0;
+    }
+    
+    .ingredient-item, .instruction-step {
+      margin-bottom: $spacing-xs;
+      position: relative;
+      line-height: 1.5;
+    }
+    
+    .ingredient-item::before {
+      content: "•";
+      position: absolute;
+      left: -1.5rem;
+      top: 0;
+      color: $primary-medium;
+      font-size: 1.2em;
+      width: 1.2rem;
+      text-align: center;
+    }
+    
+    .instruction-step {
+      counter-increment: instruction;
+    }
+    
+    .instructions-list {
+      counter-reset: instruction;
+    }
+    
+    .instruction-step::before {
+      content: counter(instruction) ".";
+      position: absolute;
+      left: -1.75rem;
+      top: 0;
+      color: $primary-medium;
+      font-weight: 500;
+      width: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  .recipe-card-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    
+    .favorite-button {
+      margin-right: auto;
+    }
+    
+    .m-card-actions {
+      margin-left: auto;
+      display: flex;
+      gap: $spacing-sm;
+    }
+  }
+}
+
+.recipe-item {
+  width: 100%;
+  height: 100%;
+}
+
+.recipes-grid.list-view .m-card {
+  display: flex !important;
+  flex-direction: row !important;
+  height: 225px !important;
+}
+
+.recipes-grid.list-view .m-card__media {
+  aspect-ratio: unset !important;
+  width: 300px !important;
+  height: 225px !important;
+  min-height: 225px !important;
+  max-height: 225px !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+}
+
+.recipes-grid.list-view .m-card__media-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.recipe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: $spacing-sm 0;
+  
+  .tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: $font-size-xs;
+    font-weight: 500;
+    
+    &.meal-type {
+      background-color: rgba($accent-medium, 0.15);
+      color: $primary-dark;
+    }
+    
+    &.cuisine {
+      background-color: rgba($accent-medium, 0.15);
+      color: $accent-dark;
+    }
+    
+    &.dietary {
+      background-color: rgba($neutral-xdark, 0.15);
+      color: $secondary-dark;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .recipes-grid.list-view .m-card {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  
+  .recipes-grid.list-view .m-card__media {
+    width: 100% !important;
+  }
+}

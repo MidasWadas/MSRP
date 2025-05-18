@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+@import '../../components/atoms/MButton/mbutton.scss';
+
+.empty-state {
+  @include flex-column;
+  @include flex-center;
+  padding: $spacing-xl;
+  text-align: center;
+  height: 100%;
+  
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: $spacing-md;
+  }
+  
+  .empty-message {
+    color: $text-medium;
+    font-size: $font-size-md;
+    margin-bottom: $spacing-md;
+  }
+  
+  .empty-action {
+    @extend .m-button !optional;
+    @extend .m-button--primary !optional;
+  }
+}
