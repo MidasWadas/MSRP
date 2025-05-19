@@ -1,0 +1,75 @@
+@import '../../styles/variables';
+@import '../../components/atoms/MButton/mbutton.scss';
+
+.randomizer-panel {
+  background-color: $bg-card;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-md;
+  
+  .randomizer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    
+    .surprise-button {
+      @extend .m-button !optional;
+      @extend .m-button--accent !optional;
+      @extend .m-button--medium !optional;
+      font-size: $font-size-lg;
+      padding: $spacing-md $spacing-xl;
+      width: 60%;
+      
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+    
+    .filter-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      .filter-badge {
+        background-color: rgba($accent-light, 0.2);
+        color: $accent-dark;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-xs;
+        margin-right: $spacing-sm;
+      }
+      
+      .reset-filters {
+        @extend .m-button !optional;
+        @extend .m-button--outlined !optional;
+        @extend .m-button--secondary !optional;
+        @extend .m-button--small !optional;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+  
+  .randomizer-tips {
+    background-color: $bg-light;
+    border-radius: $border-radius-sm;
+    padding: $spacing-sm;
+    
+    h3 {
+      font-size: $font-size-md;
+      margin-bottom: $spacing-sm;
+      color: $text-dark;
+    }
+    
+    ul {
+      margin-left: $spacing-md;
+      
+      li {
+        margin-bottom: $spacing-xs;
+        color: $text-medium;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}

@@ -29,27 +29,21 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 	onEdit,
 	onDelete,
 }) => {
-	// Get cuisine options and meal types from custom hooks
 	const { cuisineOptions } = useCuisineOptions();
 	const { mealTypes } = useMealTypes();
 
-	// Find the cuisine and meal type names based on IDs
 	const getCuisineName = (id: number): string => {
-		// First check if we have the cuisine in our API data
 		const apiCuisine = cuisineOptions.find((c) => c.id === id);
 		if (apiCuisine) return apiCuisine.name;
 
-		// Fallback to mock data
 		const mockCuisine = mockCuisineOptions.find((c) => c.value === id);
 		return mockCuisine?.label || "Unknown cuisine";
 	};
 
 	const getMealTypeName = (id: number): string => {
-		// First check if we have the meal type in our API data
 		const apiMealType = mealTypes.find((m) => m.id === id);
 		if (apiMealType) return apiMealType.name;
 
-		// Fallback to mock data
 		const mockMealType = mockMealTypeOptions.find((m) => m.value === id);
 		return mockMealType?.label || "Unknown meal type";
 	};

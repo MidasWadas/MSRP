@@ -1,0 +1,100 @@
+@import '@styles/variables.scss';
+
+.recipe-filters-panel {
+  background-color: lighten($bg-medium, 2%);
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-md;
+  margin-bottom: $spacing-xl;
+}
+
+.recipe-filters {
+  background-color: $bg-light;
+  border-radius: $border-radius-md;
+  padding: $spacing-md $spacing-md $spacing-sm;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  
+  &__title {
+    font-size: $font-size-xl;
+    color: $text-dark;
+    margin: 0 0 $spacing-md 0;
+    padding-bottom: $spacing-sm;
+    border-bottom: 1px solid $border-light;
+    font-weight: 600;
+  }
+  
+  .filter-group {
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px dashed rgba($border-light, 0.6);
+    
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+  
+  .filter-section {
+    margin-bottom: $spacing-md;
+    
+    &__title {
+      font-size: $font-size-md;
+      font-weight: 500;
+      color: $text-dark;
+      margin: 0 0 $spacing-sm 0;
+    }
+    
+    .helper-text {
+      color: $text-light;
+      font-size: $font-size-sm;
+      margin: $spacing-xs 0 0 0;
+    }
+  }
+}
+
+.m-dropdown {
+  position: relative;
+  margin-bottom: $spacing-md;
+  width: 100%;
+  
+  &__selector {
+    border-radius: $border-radius-lg;
+    background-color: $bg-card;
+    border: 1px solid $border-light;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding: $spacing-sm $spacing-md;
+  }
+  
+  &__menu {
+    border-radius: $border-radius-lg;
+    padding: $spacing-sm 0;
+    background-color: $bg-card;
+    margin-top: $spacing-sm;
+  }
+  
+  &__option {
+    margin: 2px $spacing-xs;
+    border-radius: $border-radius-md;
+    border-left: none;
+    
+    &:not(:last-child) {
+      margin-bottom: 2px;
+    }
+    
+    &:hover {
+      background-color: rgba($primary-light, 0.1);
+    }
+    
+    &--selected {
+      background-color: rgba($primary-light, 0.15);
+      color: $primary-dark;
+      font-weight: 500;
+    }
+  }
+  
+  &__tag {
+    border-radius: $border-radius-xl;
+    padding: 4px 12px;
+    background-color: rgba($primary-light, 0.15);
+  }
+}

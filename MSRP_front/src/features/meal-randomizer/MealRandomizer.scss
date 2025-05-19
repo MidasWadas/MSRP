@@ -1,0 +1,70 @@
+@import '../../styles/variables';
+
+.meal-randomizer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  .randomizer-header {
+    .randomizer-subtitle {
+      color: $text-light;
+      margin: 0;
+      font-size: $font-size-sm;
+    }
+  }
+  
+  .randomizer-content {
+    display: flex;
+    flex: 1;
+    padding: $spacing-md;
+    gap: $spacing-md;
+    
+    .randomizer-sidebar {
+      width: 300px;
+      flex-shrink: 0;
+      background-color: $bg-card;
+      border-radius: $border-radius-md;
+      box-shadow: $shadow-sm;
+      overflow-y: auto;
+      height: calc(100vh - 180px);
+    }
+    
+    .randomizer-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+      
+      .result-container {
+        background-color: $bg-card;
+        border-radius: $border-radius-md;
+        box-shadow: $shadow-sm;
+        padding: $spacing-md;
+        flex: 1;
+        
+        .loading-state {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          color: $text-medium;
+          font-size: $font-size-lg;
+          text-align: center;
+          padding: $spacing-xl;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .randomizer-content {
+    flex-direction: column;
+    
+    .randomizer-sidebar {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+  }
+}

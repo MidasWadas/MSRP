@@ -1,0 +1,169 @@
+@import '../../../styles/variables';
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: $spacing-md;
+    background-color: $bg-page;
+
+    .login-form {
+        width: 100%;
+        max-width: 400px;
+        padding: $spacing-lg;
+        background-color: $bg-card;
+        border-radius: $border-radius-md;
+        box-shadow: $shadow-sm;
+
+        .form-title {
+            text-align: center;
+            margin-bottom: $spacing-lg;
+            color: $primary-medium;
+            font-size: $font-size-xl;
+        }
+
+        .form-group {
+            margin-bottom: $spacing-md;
+
+            label {
+                display: block;
+                margin-bottom: $spacing-sm;
+                font-weight: $font-weight-medium;
+                color: $text-dark;
+            }
+
+            input {
+                width: 100%;
+                padding: $spacing-sm;
+                border: 1px solid $border-light;
+                border-radius: $border-radius-sm;
+                transition: border-color $transition-fast;
+                background-color: $bg-light;
+                color: $text-dark;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primary-medium;
+                    box-shadow: 0 0 0 2px rgba($primary-medium, 0.2);
+                }
+            }
+
+            .error-message {
+                color: $error;
+                font-size: $font-size-sm;
+                margin-top: $spacing-sm / 2;
+            }
+        }
+
+        .login-button {
+            width: 100%;
+            padding: $spacing-sm;
+            background-color: $btn-primary;
+            color: $text-light;
+            border: none;
+            border-radius: $border-radius-md;
+            cursor: pointer;
+            transition: background-color $transition-normal;
+            font-weight: $font-weight-medium;
+
+            &:hover {
+                background-color: $btn-primary-hover;
+            }
+
+            &:active {
+                background-color: $btn-primary-active;
+            }
+
+            &:disabled {
+                background-color: $neutral-medium;
+                cursor: not-allowed;
+                opacity: 0.7;
+            }
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin-top: $spacing-md;
+            color: $link-color;
+            text-decoration: none;
+
+            &:hover {
+                color: $link-hover;
+                text-decoration: underline;
+            }
+        }
+
+        .signup-link {
+            display: block;
+            text-align: center;
+            margin-top: $spacing-lg;
+            color: $text-medium;
+
+            a {
+                color: $link-color;
+                text-decoration: none;
+
+                &:hover {
+                    color: $link-hover;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .oauth-buttons {
+        margin-top: $spacing-lg;
+        width: 100%;
+
+        .oauth-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: $spacing-sm;
+            margin-bottom: $spacing-sm;
+            background-color: $bg-light;
+            border: 1px solid $border-light;
+            border-radius: $border-radius-md;
+            cursor: pointer;
+            transition: background-color $transition-normal;
+            color: $text-dark;
+
+            &:hover {
+                background-color: $secondary-xlight;
+            }
+
+            .icon {
+                margin-right: $spacing-sm;
+            }
+        }
+
+        .google-button {
+            color: #4285F4;
+            border-color: rgba(#4285F4, 0.3);
+        }
+
+        .facebook-button {
+            color: #3b5998;
+            border-color: rgba(#3b5998, 0.3);
+        }
+
+        .github-button {
+            color: #333;
+            border-color: rgba(#333, 0.3);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: $spacing-sm;
+        
+        .login-form {
+            padding: $spacing-md;
+        }
+    }
+}

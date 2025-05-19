@@ -59,15 +59,14 @@
     margin-bottom: $spacing-md;
   }
   
-  /* Add closer spacing between specific textareas */
   .ingredients-instructions-container {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm; /* Smaller gap between ingredients and instructions */
+    gap: $spacing-sm;
     margin-bottom: $spacing-md;
     
     .m-textarea {
-      margin-bottom: $spacing-xs; /* Reduce the bottom margin of the textarea components */
+      margin-bottom: $spacing-xs;
     }
   }
   

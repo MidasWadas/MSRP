@@ -1,0 +1,198 @@
+@import '../../styles/variables';
+
+.dashboard-container {
+    padding: $spacing-lg;
+    
+    &__header {
+        margin-bottom: $spacing-xl;
+        
+        h1 {
+            font-size: $font-size-2xl;
+            margin-bottom: $spacing-md;
+            color: $text-dark;
+        }
+        
+        p {
+            color: $text-medium;
+            margin-bottom: $spacing-0;
+        }
+    }
+    
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: $spacing-lg;
+        
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.dashboard-card {
+    background-color: $bg-card;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-sm;
+    padding: $spacing-lg;
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $spacing-md;
+        
+        h3 {
+            margin: 0;
+            font-size: $font-size-lg;
+            color: $text-dark;
+        }
+    }
+    
+    &__body {
+        min-height: 100px;
+    }
+    
+    &__footer {
+        margin-top: $spacing-md;
+        padding-top: $spacing-md;
+        border-top: 1px solid $border-light;
+        font-size: $font-size-sm;
+        color: $text-medium;
+    }
+    
+    &--primary {
+        border-top: 3px solid $primary-medium;
+    }
+    
+    &--success {
+        border-top: 3px solid $success;
+    }
+    
+    &--warning {
+        border-top: 3px solid $warning;
+    }
+    
+    &--danger {
+        border-top: 3px solid $error;
+    }
+}
+
+.stats-widget {
+    display: flex;
+    align-items: center;
+    
+    &__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: $spacing-md;
+        
+        &--primary {
+            background-color: rgba($primary-medium, 0.1);
+            color: $primary-medium;
+        }
+        
+        &--success {
+            background-color: rgba($success, 0.1);
+            color: $success;
+        }
+        
+        &--warning {
+            background-color: rgba($warning, 0.1);
+            color: $warning;
+        }
+        
+        &--danger {
+            background-color: rgba($error, 0.1);
+            color: $error;
+        }
+    }
+    
+    &__content {
+        .value {
+            font-size: $font-size-lg;
+            font-weight: $font-weight-semibold;
+            margin: $spacing-0;
+            color: $text-dark;
+        }
+        
+        .label {
+            color: $text-medium;
+            margin: $spacing-0;
+            font-size: $font-size-sm;
+        }
+    }
+}
+
+.chart-container {
+    height: 250px;
+    position: relative;
+    margin-bottom: $spacing-md;
+}
+
+.activity-feed {
+    &__item {
+        display: flex;
+        padding: $spacing-sm 0;
+        border-bottom: 1px solid $border-light;
+        
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    
+    &__icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: $bg-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: $spacing-sm;
+        color: $primary-medium;
+    }
+    
+    &__content {
+        flex: 1;
+        
+        p {
+            margin: $spacing-0;
+        }
+        
+        .time {
+            font-size: $font-size-xs;
+            color: $text-medium;
+        }
+    }
+}
+
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    
+    .action-btn {
+        padding: $spacing-sm $spacing-md;
+        background-color: $primary-light;
+        color: $text-light;
+        border-radius: $border-radius-md;
+        border: none;
+        cursor: pointer;
+        transition: background-color $transition-normal;
+        
+        &:hover {
+            background-color: $primary-medium;
+        }
+    }
+}
+
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
