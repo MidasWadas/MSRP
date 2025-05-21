@@ -11,7 +11,7 @@ public partial class ApiContext
 {
     public DbSet<Recipe> Recepies { get; set; }
     public DbSet<CuisineOption> CuisineOptions { get; set; }
-    public DbSet<MealType> MealTypeOptions { get; set; }
+    public DbSet<MealType> MealTypes { get; set; }
     public DbSet<DietaryOption> DietaryOptions { get; set; }
     public DbSet<DifficultyOption> DifficultyOptions { get; set; }
 }

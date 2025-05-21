@@ -15,7 +15,9 @@ namespace MSRP.Domain.Entities.Recipe
 		RecipeMealType mealType,
 		List<RecipeDietaryOption> dietaries,
 		List<string> ingredients,
-		List<string> instruction)
+		List<string> instruction,
+		bool isFavorite
+		)
 	{
 		public int Id { get; set; } = id;
 
@@ -43,6 +45,6 @@ namespace MSRP.Domain.Entities.Recipe
 
 		public List<string> Instructions { get; set; } = instruction;
 
-		public bool IsFavorite { get; set; }
+		public bool IsFavorite { get; set; } = isFavorite;
 	}
 }

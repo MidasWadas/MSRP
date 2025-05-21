@@ -16,7 +16,7 @@ public class DatabaseSeeder(ApiContext context)
         if (!await context.CuisineOptions.AnyAsync())
             await SeedCuisineOptionsAsync();
 
-        if (!await context.MealTypeOptions.AnyAsync())
+        if (!await context.MealTypes.AnyAsync())
             await SeedMealTypesAsync();
 
         if (!await context.DietaryOptions.AnyAsync())
@@ -43,7 +43,7 @@ public class DatabaseSeeder(ApiContext context)
     private async Task SeedMealTypesAsync()
     {
         Console.WriteLine("Adding meal types...");
-        await context.MealTypeOptions.AddRangeAsync(
+        await context.MealTypes.AddRangeAsync(
             new MealType(id: 1, name: "Breakfast"),
             new MealType(id: 2, name: "Lunch"),
             new MealType(id: 3, name: "Dinner"),

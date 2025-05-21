@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\MSRP.Domain\MSRP.Domain.csproj" PrivateAssets="All" />
     </ItemGroup>
 
