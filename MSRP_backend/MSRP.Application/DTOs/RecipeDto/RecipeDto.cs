@@ -1,4 +1,5 @@
 using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Entities.Recipe.ValueObjects;
 
 namespace MSRP.Application.DTOs.RecipeDto
 {
@@ -10,29 +11,29 @@ namespace MSRP.Application.DTOs.RecipeDto
         int prepTime,
         int cookTime,
         int servings,
-        DifficultyDto difficulty,
-        CuisineTypeDto cuisineType,
-        MealTypeDto mealType,
-        List<DietaryOptionDto> dietaries,
+        RecipeDifficultyDto recipeDifficulty,
+        RecipeCuisineTypeDto recipeCuisineType,
+        RecipeMealTypeDto recipeMealType,
+        List<RecipeDietaryOptionDto> dietaries,
         List<string> ingredients,
         List<string> instructions,
         bool isFavourite
         )
     {
-        public int Id { get; set; } = id;
-        public string Title { get; set; } = title;
-        public string Description { get; set; } = description;
-        public string ImageUrl { get; set; } = imageUrl;
-        public int PrepTime { get; set; } = prepTime;
-        public int CookTime { get; set; } = cookTime;
-        public int Servings { get; set; } = servings;
-        public DifficultyDto Difficulty { get; set; } = difficulty;
-        public CuisineTypeDto CuisineType { get; set; } = cuisineType;
-        public MealTypeDto MealType { get; set; } = mealType;
-        public List<DietaryOptionDto> Dietaries { get; set; } = dietaries;
-        public List<string> Ingredients { get; set; } = ingredients;
-        public List<string> Instructions { get; set; } = instructions;
-        public bool IsFavorite { get; set; } = isFavourite;
+        public int Id { get; init; } = id;
+        public string Title { get; init; } = title;
+        public string Description { get; init; } = description;
+        public string ImageUrl { get; init; } = imageUrl;
+        public int PrepTime { get; init; } = prepTime;
+        public int CookTime { get; init; } = cookTime;
+        public int Servings { get; init; } = servings;
+        public RecipeDifficultyDto RecipeDifficulty { get; init; } = recipeDifficulty;
+        public RecipeCuisineTypeDto RecipeCuisineType { get; init; } = recipeCuisineType;
+        public RecipeMealTypeDto RecipeMealType { get; init; } = recipeMealType;
+        public List<RecipeDietaryOptionDto> Dietaries { get; init; } = dietaries;
+        public List<string> Ingredients { get; init; } = ingredients;
+        public List<string> Instructions { get; init; } = instructions;
+        public bool IsFavorite { get; init; } = isFavourite;
 
         public static RecipeDto FromRecipe(Recipe recipe) =>
             new(
@@ -43,17 +44,35 @@ namespace MSRP.Application.DTOs.RecipeDto
                 recipe.PrepTime,
                 recipe.CookTime,
                 recipe.Servings,
-                new DifficultyDto(recipe.Difficulty.Id, recipe.Difficulty.Name),
-                new CuisineTypeDto(recipe.CuisineType.Id, recipe.CuisineType.Name),
-                new MealTypeDto(recipe.MealType.Id, recipe.MealType.Name),
-                recipe.Dietaries.Select(d => new DietaryOptionDto(d.Id, d.Name)).ToList(),
+                new RecipeDifficultyDto(recipe.Difficulty.Id, recipe.Difficulty.Name),
+                new RecipeCuisineTypeDto(recipe.CuisineType.Id, recipe.CuisineType.Name),
+                new RecipeMealTypeDto(recipe.MealType.Id, recipe.MealType.Name),
+                recipe.Dietaries.Select(d => new RecipeDietaryOptionDto(d.Id, d.Name)).ToList(),
                 recipe.Ingredients.ToList(),
                 recipe.Instructions.ToList(),
                 recipe.IsFavorite);
+        
+        public static Recipe ToRecipe(RecipeDto recipeDto) =>
+            new(
+                recipeDto.Id,
+                recipeDto.Title,
+                recipeDto.Description,
+                recipeDto.ImageUrl,
+                recipeDto.PrepTime,
+                recipeDto.CookTime,
+                recipeDto.Servings,
+                new RecipeDifficulty(recipeDto.RecipeDifficulty.Id, recipeDto.RecipeDifficulty.Name),
+                new RecipeCuisineType(recipeDto.RecipeCuisineType.Id, recipeDto.RecipeCuisineType.Name),
+                new RecipeMealType(recipeDto.RecipeMealType.Id, recipeDto.RecipeMealType.Name),
+                recipeDto.Dietaries.Select(d => new RecipeDietaryOption(d.Id, d.Name)).ToList(),
+                recipeDto.Ingredients.ToList(),
+                recipeDto.Instructions.ToList(),
+                recipeDto.IsFavorite
+                );
     }
         
-    public record DifficultyDto(int Id, string Name);
-    public record MealTypeDto(int Id, string Name);
-    public record DietaryOptionDto(int Id, string Name);
-    public record CuisineTypeDto(int Id, string Name);
+    public record RecipeDifficultyDto(int Id, string Name);
+    public record RecipeMealTypeDto(int Id, string Name);
+    public record RecipeDietaryOptionDto(int Id, string Name);
+    public record RecipeCuisineTypeDto(int Id, string Name);
 }
