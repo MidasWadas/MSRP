@@ -9,9 +9,22 @@ public class CreateRecipeCommandHandler(IRecipeRepository recipeRepository)
 {
     public async Task<RecipeDto> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
     {
-        var recipe = RecipeDto.ToRecipe(request.Recipe);
-        var createdRecipe = await recipeRepository.CreateRecipeAsync(recipe, cancellationToken);
+        var createdRecipe = await recipeRepository.CreateRecipeAsync(
+            request.Title,
+            request.Description,
+            request.ImageUrl,
+            request.PrepTime,
+            request.CookTime,
+            request.Servings,
+            request.RecipeDifficulty,
+            request.RecipeCuisineType,
+            request.RecipeMealType,
+            request.Dietaries,
+            request.Ingredients,
+            request.Instructions,
+            request.IsFavorite,
+            cancellationToken);
         
-        return await Task.FromResult(RecipeDto.FromRecipe(createdRecipe));
+        return RecipeDto.FromRecipe(createdRecipe);
     }
 }

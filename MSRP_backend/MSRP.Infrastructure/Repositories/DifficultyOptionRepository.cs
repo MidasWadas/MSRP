@@ -7,7 +7,7 @@ namespace MSRP.Infrastructure.Repositories;
 
 public class DifficultyOptionRepository(ApiContext context) : IDifficultyOptionRepository
 {
-    public async Task<List<DifficultyOption>> GetAllDifficultyOptionsAsync(CancellationToken cancellationToken)
+    public async Task<List<DifficultyOption>> GetDifficultyOptionsAsync(CancellationToken cancellationToken)
     {
         return await context.DifficultyOptions
             .AsNoTracking()

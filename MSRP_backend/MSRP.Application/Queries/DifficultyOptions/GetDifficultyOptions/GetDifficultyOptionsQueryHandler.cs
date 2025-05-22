@@ -9,7 +9,7 @@ public class GetDifficultyOptionsQueryHandler(IDifficultyOptionRepository reposi
 {
     public async Task<List<DifficultyOptionDto>?> Handle(GetDifficultyOptionsQuery request, CancellationToken cancellationToken)
     {
-        var difficultyOptions = await repository.GetAllDifficultyOptionsAsync(cancellationToken);
+        var difficultyOptions = await repository.GetDifficultyOptionsAsync(cancellationToken);
         
         return difficultyOptions?.Select(DifficultyOptionDto.FromDifficultyOption).ToList();
     }

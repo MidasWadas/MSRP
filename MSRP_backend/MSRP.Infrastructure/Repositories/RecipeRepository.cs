@@ -7,7 +7,7 @@ namespace MSRP.Infrastructure.Repositories
 {
     public class RecipeRepository(ApiContext context) : IRecipeRepository
     {
-        public async Task<IEnumerable<Recipe>> GetAllRecipesAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
         {
             return await context.Recepies
                 .AsNoTracking()

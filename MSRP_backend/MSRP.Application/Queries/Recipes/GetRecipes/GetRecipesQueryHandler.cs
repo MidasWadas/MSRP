@@ -9,7 +9,7 @@ public class GetRecipesQueryHandler(IRecipeRepository repository)
 {
     public async Task<List<RecipeDto>> Handle(GetRecipesQuery request, CancellationToken cancellationToken)
     {
-        var recipes = await repository.GetAllRecipesAsync(cancellationToken);
+        var recipes = await repository.GetRecipesAsync(cancellationToken);
         
         return recipes.Select(RecipeDto.FromRecipe).ToList();
     }

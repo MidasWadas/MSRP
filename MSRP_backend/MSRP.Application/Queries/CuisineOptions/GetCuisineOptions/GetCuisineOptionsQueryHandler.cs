@@ -9,7 +9,7 @@ public class GetCuisineOptionsQueryHandler(ICuisineOptionRepository repository)
 {
     public async Task<List<CuisineOptionDto>?> Handle(GetCuisineOptionsQuery request, CancellationToken cancellationToken)
     {
-        var cuisineOptions = await repository.GetAllCuisineOptionsAsync(cancellationToken);
+        var cuisineOptions = await repository.GetCuisineOptionsAsync(cancellationToken);
         
         return cuisineOptions.Select(CuisineOptionDto.FromCuisineOption).ToList();
     }
