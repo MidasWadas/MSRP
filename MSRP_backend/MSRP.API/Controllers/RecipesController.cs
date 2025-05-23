@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MSRP.API.Requests.Recipe.CreateRecipe;
+using MSRP.API.Requests.Recipe.GetRecipe;
 using MSRP.Application.Commands.Recipes.CreateRecipe;
 using MSRP.Application.Commands.Recipes.DeleteRecipe;
 using MSRP.Application.Commands.Recipes.UpdateRecipe;
@@ -17,46 +19,56 @@ namespace MSRP.API.Controllers
 	[ApiController]
 	public class RecipesController(IMediator mediator) : ControllerBase
 	{
-		[HttpGet("get")]
+		[HttpGet("get-recipes")]
 		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipes()
 		{
 			return Ok(await mediator.Send(new GetRecipesQuery()));
 		}
 
-		[HttpGet("get/{id:int}")]
-		public async Task<ActionResult<RecipeDto>> GetRecipe(int id)
+		[HttpGet("get-recipe")]
+		public async Task<ActionResult<RecipeDto>> GetRecipe([FromQuery] GetRecipeRequest request)
 		{
-			var mealRecepie = await mediator.Send(new GetRecipeQuery(id));
-			if (mealRecepie == null)
-			{
+			var recipe = await mediator.Send(new GetRecipeQuery(request.Id));
+			if (recipe == null)
 				return NotFound();
-			}
-			return mealRecepie;
+				
+			return recipe;
 		}
 
-		[HttpPost("add")]
-		public async Task<ActionResult<RecipeDto>> AddRecipe(RecipeDto? recipe)
+		[HttpPost("create-recipe")]
+		public async Task<ActionResult<RecipeDto>> CreateRecipe([FromBody] CreateRecipeRequest request)
 		{
-			if (recipe == null)
-				return BadRequest();
+			var result = await mediator.Send(new CreateRecipeCommand(
+				request.Title,
+				request.Description,
+				request.ImageUrl,
+				request.PrepTime,
+				request.CookTime,
+				request.Servings,
+				request.DifficultyId,
+				request.CuisineId,
+				request.MealTypeId,
+				request.DietariesIds,
+				request.Ingredients,
+				request.Instructions,
+				request.IsFavorite
+				));
 			
-			var result = await mediator.Send(new CreateRecipeCommand(recipe));
-			
-			return CreatedAtAction("GetRecipe", new { id = recipe.Id }, recipe);
+			return CreatedAtAction("GetRecipe", new { id = result.Id }, result);
 		}
 		
-		[HttpPut("update/{id:int}")]
+		[HttpPut("update-recipe/{id:int}")]
 		public async Task<IActionResult> UpdateRecipe(int id, RecipeDto recipe)
 		{
 			if (id != recipe.Id)
-				BadRequest();
+				return BadRequest();
 			
 			var result = await mediator.Send(new UpdateRecipeCommand(recipe));
 			
 			return CreatedAtAction("GetRecipe", new { id = recipe.Id }, recipe);
 		}
 		
-		[HttpDelete("delete/{id:int}")]
+		[HttpDelete("delete-recipe/{id:int}")]
 		public async Task<IActionResult> DeleteRecipe(int id)
 		{
 			var deleted = await mediator.Send(new DeleteRecipeCommand(id));
@@ -67,25 +79,25 @@ namespace MSRP.API.Controllers
 			return NotFound();
 		}
 		
-		[HttpGet("cuisine/{cuisineId:int}")]
+		[HttpGet("get-recipes-by-cuisine/{cuisineId:int}")]
 		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipesByCuisine(int cuisineId)
 		{
 			return Ok(await mediator.Send(new GetRecipesByCuisineQuery(cuisineId)));
 		}
 		
-		[HttpGet("mealtype/{mealTypeId:int}")]
+		[HttpGet("get-recipes-by-mealtype/{mealTypeId:int}")]
 		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipesByMealType(int mealTypeId)
 		{
 			return Ok(await mediator.Send(new GetRecipesByMealTypeQuery(mealTypeId)));
 		}
 		
-		[HttpGet("dietary/{dietaryId:int}")]
+		[HttpGet("get-recipes-by-dietary/{dietaryId:int}")]
 		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipesByDietary(int dietaryId)
 		{
 			return Ok(await mediator.Send(new GetRecipesByDietaryQuery(dietaryId)));
 		}
 		
-		[HttpGet("favorites")]
+		[HttpGet("get-favorite-recipes")]
 		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetFavoriteRecipes()
 		{
 			return Ok(await mediator.Send(new GetFavoriteRecipesQuery()));

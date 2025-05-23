@@ -4,5 +4,5 @@ namespace MSRP.Application.Interfaces.CuisineOptionRepository;
 
 public interface ICuisineOptionRepository
 {
-    Task<List<CuisineOption>> GetAllCuisineOptionsAsync(CancellationToken cancellationToken);
+    Task<List<CuisineOption>> GetCuisineOptionsAsync(CancellationToken cancellationToken);
 }

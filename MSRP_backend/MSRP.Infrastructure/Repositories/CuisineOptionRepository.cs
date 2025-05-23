@@ -7,7 +7,7 @@ namespace MSRP.Infrastructure.Repositories;
 
 public class CuisineOptionRepository(ApiContext context) : ICuisineOptionRepository
 {
-    public async Task<List<CuisineOption>> GetAllCuisineOptionsAsync(CancellationToken cancellationToken)
+    public async Task<List<CuisineOption>> GetCuisineOptionsAsync(CancellationToken cancellationToken)
     {
         return await context.CuisineOptions
             .AsNoTracking()

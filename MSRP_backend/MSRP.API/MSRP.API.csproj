@@ -27,4 +27,11 @@
     <ProjectReference Include="..\MSRP.Infrastructure\MSRP.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Requests\Cuisine\" />
+    <Folder Include="Requests\Dietary\" />
+    <Folder Include="Requests\Difficulty\" />
+    <Folder Include="Requests\MealType\" />
+  </ItemGroup>
+
 </Project>

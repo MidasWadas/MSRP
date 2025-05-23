@@ -9,7 +9,7 @@ public class GetMealTypesQueryHandler(IMealTypeRepository repository)
 {
     public async Task<List<MealTypeDto>?> Handle(GetMealTypesQuery request, CancellationToken cancellationToken)
     {
-        var mealTypes = await repository.GetAllMealTypesAsync(cancellationToken);
+        var mealTypes = await repository.GetMealTypesAsync(cancellationToken);
         
         return mealTypes?.Select(MealTypeDto.FromMealType).ToList();
     }
