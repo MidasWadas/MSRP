@@ -45,11 +45,10 @@ namespace MSRP.API.Controllers
 				request.PrepTime,
 				request.CookTime,
 				request.Servings,
-				new CreateRecipeCommand_RecipeDifficulty(request.Difficulty.Id, request.Difficulty.Name),
-				new CreateRecipeCommand_RecipeCuisineType(request.CuisineType.Id, request.CuisineType.Name),
-				new CreateRecipeCommand_RecipeMealType(request.MealType.Id, request.MealType.Name),
-				request.Dietaries.Select(d => 
-					new CreateRecipeCommand_RecipeDietaryOption(d.Id, d.Name)).ToList(),
+				request.DifficultyId,
+				request.CuisineId,
+				request.MealTypeId,
+				request.DietariesIds,
 				request.Ingredients,
 				request.Instructions,
 				request.IsFavorite

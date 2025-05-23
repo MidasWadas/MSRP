@@ -49,7 +49,7 @@ namespace MSRP.Infrastructure.Repositories
         public async Task<List<Recipe>> GetRecipesByCuisineIdAsync(int cuisineId, CancellationToken cancellationToken)
         {
             return await context.Recepies
-                .Where(r => r.CuisineType.Id == cuisineId)
+                .Where(r => r.CuisineId == cuisineId)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
@@ -57,7 +57,7 @@ namespace MSRP.Infrastructure.Repositories
         public async Task<List<Recipe>> GetRecipesByMealTypeIdAsync(int mealTypeId, CancellationToken cancellationToken)
         {
             return await context.Recepies
-                .Where(r => r.MealType.Id == mealTypeId)
+                .Where(r => r.MealTypeId == mealTypeId)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
@@ -65,7 +65,7 @@ namespace MSRP.Infrastructure.Repositories
         public async Task<List<Recipe>> GetRecipesByDietaryIdAsync(int dietaryId, CancellationToken cancellationToken)
         {
             return await context.Recepies
-                .Where(r => r.Dietaries.Any(d => d.Id == dietaryId))
+                .Where(r => r.DietariesIds.Contains(dietaryId))
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }

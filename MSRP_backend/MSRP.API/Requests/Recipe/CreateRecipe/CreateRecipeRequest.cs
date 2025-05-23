@@ -27,16 +27,16 @@ public sealed class CreateRecipeRequest
     public int Servings { get; init; }
 
     [Required]
-    public CreateRecipeRequest_Difficulty Difficulty { get; init; }
+    public int DifficultyId { get; init; }
 
     [Required]
-    public CreateRecipeRequest_CuisineType CuisineType { get; init; }
+    public int CuisineId { get; init; }
 
     [Required]
-    public CreateRecipeRequest_MealType MealType { get; init; }
+    public int MealTypeId { get; init; }
 
     [Required]
-    public List<CreateRecipeRequest_DietaryOption> Dietaries { get; init; }
+    public List<int> DietariesIds { get; init; }
 
     [Required]
     public List<string> Ingredients { get; init; }
@@ -46,8 +46,3 @@ public sealed class CreateRecipeRequest
 
     public bool IsFavorite { get; init; }
 }
-
-public sealed record CreateRecipeRequest_Difficulty(int Id, string Name);
-public sealed record CreateRecipeRequest_MealType(int Id, string Name);
-public sealed record CreateRecipeRequest_DietaryOption(int Id, string Name);
-public sealed record CreateRecipeRequest_CuisineType(int Id, string Name);
