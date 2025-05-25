@@ -27,7 +27,7 @@ public class CreateRecipeCommandHandler(IRecipeRepository recipeRepository, IGen
             request.DietariesIds,
             request.Ingredients,
             request.Instructions,
-            request.IsFavorite);
+            request.CreatedByUserId);
                 
         var createdRecipe = await recipeRepository.CreateRecipeAsync(recipe, cancellationToken);
         

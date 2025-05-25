@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MSRP.API.Requests.Recipe.CreateRecipe;
 using MSRP.API.Requests.Recipe.GetRecipe;
+using MSRP.API.Requests.Recipe.UpdateRecipe;
 using MSRP.Application.Commands.Recipes.CreateRecipe;
 using MSRP.Application.Commands.Recipes.DeleteRecipe;
 using MSRP.Application.Commands.Recipes.UpdateRecipe;
@@ -9,6 +10,7 @@ using MSRP.Application.DTOs.RecipeDto;
 using MSRP.Application.Queries.Recipes.GetFavoriteRecipes;
 using MSRP.Application.Queries.Recipes.GetRecipe;
 using MSRP.Application.Queries.Recipes.GetRecipes;
+using MSRP.Application.Queries.Recipes.GetRecipes.Query;
 using MSRP.Application.Queries.Recipes.GetRecipesByCuisine;
 using MSRP.Application.Queries.Recipes.GetRecipesByDietary;
 using MSRP.Application.Queries.Recipes.GetRecipesByMealType;
@@ -51,21 +53,36 @@ namespace MSRP.API.Controllers
 				request.DietariesIds,
 				request.Ingredients,
 				request.Instructions,
-				request.IsFavorite
+				request.CreaterByUserId
 				));
 			
-			return CreatedAtAction("GetRecipe", new { id = result.Id }, result);
+			return Created(result.Id.ToString(), result);
 		}
 		
 		[HttpPut("update-recipe/{id:int}")]
-		public async Task<IActionResult> UpdateRecipe(int id, RecipeDto recipe)
+		public async Task<IActionResult> UpdateRecipe(int id, UpdateRecipeRequest request)
 		{
-			if (id != recipe.Id)
+			if (id != request.Id)
 				return BadRequest();
 			
-			var result = await mediator.Send(new UpdateRecipeCommand(recipe));
+			var result = await mediator.Send(new UpdateRecipeCommand(
+				request.Id,
+				request.Title,
+				request.Description,
+				request.ImageUrl,
+				request.PrepTime,
+				request.CookTime,
+				request.Servings,
+				request.DifficultyId,
+				request.CuisineId,
+				request.MealTypeId,
+				request.DietariesIds,
+				request.Ingredients,
+				request.Instruction,
+				request.UpdatedByUserId
+				));
 			
-			return CreatedAtAction("GetRecipe", new { id = recipe.Id }, recipe);
+			return Ok(result);
 		}
 		
 		[HttpDelete("delete-recipe/{id:int}")]

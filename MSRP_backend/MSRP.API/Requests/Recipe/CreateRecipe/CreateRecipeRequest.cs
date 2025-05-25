@@ -44,5 +44,5 @@ public sealed class CreateRecipeRequest
     [Required]
     public List<string> Instructions { get; init; }
 
-    public bool IsFavorite { get; init; }
+    public int CreaterByUserId { get; init; }
 }

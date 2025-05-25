@@ -16,5 +16,5 @@ public sealed record CreateRecipeCommand(
     List<int> DietariesIds,
     List<string> Ingredients,
     List<string> Instructions,
-    bool IsFavorite
+    int CreatedByUserId
 ) : IRequest<RecipeDto>;
