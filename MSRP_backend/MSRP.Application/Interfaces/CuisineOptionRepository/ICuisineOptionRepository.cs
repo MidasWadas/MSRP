@@ -1,8 +1,8 @@
-using MSRP.Domain.Entities.CuisineOption;
+using MSRP.Domain.Cuisine;
 
 namespace MSRP.Application.Interfaces.CuisineOptionRepository;
 
 public interface ICuisineOptionRepository
 {
-    Task<List<CuisineOption>> GetCuisineOptionsAsync(CancellationToken cancellationToken);
+    Task<List<Cuisine>> GetCuisineOptionsAsync(CancellationToken cancellationToken);
 }

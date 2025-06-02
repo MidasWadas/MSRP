@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MSRP.Domain.Entities.CuisineOption;
-using MSRP.Domain.Entities.DietaryOption;
-using MSRP.Domain.Entities.DifficultyOption;
-using MSRP.Domain.Entities.MealType;
+using MSRP.Domain.Cuisine;
+using MSRP.Domain.Dietary;
+using MSRP.Domain.Difficulty;
+using MSRP.Domain.MealType;
 
 namespace MSRP.Infrastructure.Persistence.Seed;
 
@@ -18,12 +18,12 @@ public class DbInitializer
 
     private static void SeedCuisineOptions(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CuisineOption>().HasData(
-            new CuisineOption(id: 1, name: "Italian", description: "Italian cuisine"),
-            new CuisineOption(id: 2, name: "Mexican", description: "Mexican cuisine"),
-            new CuisineOption(id: 3, name: "Japanese", description: "Japanese cuisine"),
-            new CuisineOption(id: 4, name: "Indian", description: "Indian cuisine"),
-            new CuisineOption(id: 5, name: "Mediterranean", description: "Mediterranean cuisine")
+        modelBuilder.Entity<Cuisine>().HasData(
+            new Cuisine(id: 1, name: "Italian", description: "Italian cuisine"),
+            new Cuisine(id: 2, name: "Mexican", description: "Mexican cuisine"),
+            new Cuisine(id: 3, name: "Japanese", description: "Japanese cuisine"),
+            new Cuisine(id: 4, name: "Indian", description: "Indian cuisine"),
+            new Cuisine(id: 5, name: "Mediterranean", description: "Mediterranean cuisine")
         );
     }
     
@@ -39,20 +39,20 @@ public class DbInitializer
     
     private static void SeedDietaryOptions(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<DietaryOption>().HasData(
-            new DietaryOption(id: 1, name: "Vegetarian", description: "Vegetarian option"),
-            new DietaryOption(id: 2, name: "Vegan", description: "Vegan option"),
-            new DietaryOption(id: 3, name: "Gluten-Free", description: "Gluten-Free option"),
-            new DietaryOption(id: 4, name: "Dairy-Free", description: "Dairy-Free option")
+        modelBuilder.Entity<Dietary>().HasData(
+            new Dietary(id: 1, name: "Vegetarian", description: "Vegetarian option"),
+            new Dietary(id: 2, name: "Vegan", description: "Vegan option"),
+            new Dietary(id: 3, name: "Gluten-Free", description: "Gluten-Free option"),
+            new Dietary(id: 4, name: "Dairy-Free", description: "Dairy-Free option")
         );
     }
     
     private static void SeedDifficultyOptions(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<DifficultyOption>().HasData(
-            new DifficultyOption(id: 1, name: "Easy"),
-            new DifficultyOption(id: 2, name: "Medium"),
-            new DifficultyOption(id: 3, name: "Hard")
+        modelBuilder.Entity<Difficulty>().HasData(
+            new Difficulty(id: 1, name: "Easy"),
+            new Difficulty(id: 2, name: "Medium"),
+            new Difficulty(id: 3, name: "Hard")
         );
     }
 }

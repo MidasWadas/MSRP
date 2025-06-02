@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using MSRP.Application.Interfaces.RecipeRepository;
-using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Recipe;
 using MSRP.Infrastructure.Persistence;
 
 namespace MSRP.Infrastructure.Repositories
 {
     public class RecipeRepository(ApiContext context) : IRecipeRepository
     {
-        public async Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
+        public async Task<List<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
         {
             return await context.Recepies
                 .AsNoTracking()
@@ -28,13 +28,16 @@ namespace MSRP.Infrastructure.Repositories
                 .ContinueWith(t => recipe, cancellationToken);
         }
 
-        public async Task<Recipe> UpdateRecipeAsync(Recipe recipe, CancellationToken cancellationToken)
+        public async Task<Recipe> UpdateRecipeAsync(int id, Recipe recipe, CancellationToken cancellationToken)
         {
-            context.Recepies.Update(recipe);
-            return await context.SaveChangesAsync(cancellationToken)
-                .ContinueWith(t => recipe, cancellationToken);
-        }
+            if (!await context.Recepies.AnyAsync(r => r.Id == id, cancellationToken)) 
+                throw new KeyNotFoundException($"Recipe with ID {id} not found");
 
+            context.Recepies.Update(recipe);
+            await context.SaveChangesAsync(cancellationToken);
+            return recipe;
+        }
+        
         public async Task<bool> DeleteRecipeAsync(int id, CancellationToken cancellationToken)
         {
             var recipe = await context.Recepies.FindAsync([id], cancellationToken);
@@ -66,14 +69,6 @@ namespace MSRP.Infrastructure.Repositories
         {
             return await context.Recepies
                 .Where(r => r.DietariesIds.Contains(dietaryId))
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);
-        }
-
-        public async Task<List<Recipe>> GetFavoriteRecipesAsync(CancellationToken cancellationToken)
-        {
-            return await context.Recepies
-                .Where(r => r.IsFavorite)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }

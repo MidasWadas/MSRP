@@ -1,8 +1,6 @@
-using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MSRP.Domain.Entities.Recipe;
-using MSRP.Domain.Entities.Recipe.ValueObjects;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Infrastructure.Persistence.Configuration;
 

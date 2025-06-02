@@ -1,10 +1,9 @@
-using MSRP.Domain.Entities.Recipe;
-using MSRP.Domain.Entities.Recipe.ValueObjects;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Application.DTOs.RecipeDto
 {
     public sealed record RecipeDto(
-        int Id,
+        int? Id,
         string Title,
         string Description,
         string ImageUrl,
@@ -17,7 +16,7 @@ namespace MSRP.Application.DTOs.RecipeDto
         List<RecipeDietaryOptionDto> Dietaries,
         List<string> Ingredients,
         List<string> Instructions,
-        bool IsFavorite
+        int CreatedByUserId
         )
     {
         public static RecipeDto FromRecipe(Recipe recipe) => null;
@@ -36,24 +35,29 @@ namespace MSRP.Application.DTOs.RecipeDto
             //     recipe.Ingredients.ToList(),
             //     recipe.Instructions.ToList(),
             //     recipe.IsFavorite);
-        
-        public static Recipe ToRecipe(RecipeDto recipeDto) =>
-            new(
-                recipeDto.Id,
-                recipeDto.Title,
-                recipeDto.Description,
-                recipeDto.ImageUrl,
-                recipeDto.PrepTime,
-                recipeDto.CookTime,
-                recipeDto.Servings,
-                recipeDto.RecipeDifficulty.Id,
-                recipeDto.RecipeCuisineType.Id,
-                recipeDto.RecipeMealType.Id,
-                recipeDto.Dietaries.Select(d => d.Id).ToList(),
-                recipeDto.Ingredients.ToList(),
-                recipeDto.Instructions.ToList(),
-                recipeDto.IsFavorite
-                );
+
+            public static Recipe ToRecipe(RecipeDto recipeDto)
+            {
+                if(recipeDto?.Id is null)
+                    throw new ArgumentNullException(nameof(recipeDto.Id), "Recipe ID cannot be null");
+                
+                return new(
+                    recipeDto.Id.Value,
+                    recipeDto.Title,
+                    recipeDto.Description,
+                    recipeDto.ImageUrl,
+                    recipeDto.PrepTime,
+                    recipeDto.CookTime,
+                    recipeDto.Servings,
+                    recipeDto.RecipeDifficulty.Id,
+                    recipeDto.RecipeCuisineType.Id,
+                    recipeDto.RecipeMealType.Id,
+                    recipeDto.Dietaries.Select(d => d.Id).ToList(),
+                    recipeDto.Ingredients.ToList(),
+                    recipeDto.Instructions.ToList(),
+                    recipeDto.CreatedByUserId
+                    );
+            }
     }
         
     public record RecipeDifficultyDto(int Id, string Name);

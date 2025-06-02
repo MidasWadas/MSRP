@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MSRP.Domain.Entities.CuisineOption;
-using MSRP.Domain.Entities.DietaryOption;
-using MSRP.Domain.Entities.DifficultyOption;
-using MSRP.Domain.Entities.MealType;
+using MSRP.Domain.Cuisine;
+using MSRP.Domain.Dietary;
+using MSRP.Domain.Difficulty;
+using MSRP.Domain.MealType;
 using MSRP.Infrastructure.Persistence;
 
 namespace MSRP.DbMigrator.Services;
@@ -32,11 +32,11 @@ public class DatabaseSeeder(ApiContext context)
     {
         Console.WriteLine("Adding cuisine options...");
         await context.CuisineOptions.AddRangeAsync(
-            new CuisineOption(id: 1, name: "Italian", description: "Italian cuisine"),
-            new CuisineOption(id: 2, name: "Mexican", description: "Mexican cuisine"),
-            new CuisineOption(id: 3, name: "Japanese", description: "Japanese cuisine"),
-            new CuisineOption(id: 4, name: "Indian", description: "Indian cuisine"),
-            new CuisineOption(id: 5, name: "Mediterranean", description: "Mediterranean cuisine")
+            new Cuisine(id: 1, name: "Italian", description: "Italian cuisine"),
+            new Cuisine(id: 2, name: "Mexican", description: "Mexican cuisine"),
+            new Cuisine(id: 3, name: "Japanese", description: "Japanese cuisine"),
+            new Cuisine(id: 4, name: "Indian", description: "Indian cuisine"),
+            new Cuisine(id: 5, name: "Mediterranean", description: "Mediterranean cuisine")
         );
     }
 
@@ -55,10 +55,10 @@ public class DatabaseSeeder(ApiContext context)
     {
         Console.WriteLine("Adding dietary options...");
         await context.DietaryOptions.AddRangeAsync(
-            new DietaryOption(id: 1, name: "Vegetarian", description: "Vegetarian option"),
-            new DietaryOption(id: 2, name: "Vegan", description: "Vegan option"),
-            new DietaryOption(id: 3, name: "Gluten-Free", description: "Gluten-Free option"),
-            new DietaryOption(id: 4, name: "Dairy-Free", description: "Dairy-Free option")
+            new Dietary(id: 1, name: "Vegetarian", description: "Vegetarian option"),
+            new Dietary(id: 2, name: "Vegan", description: "Vegan option"),
+            new Dietary(id: 3, name: "Gluten-Free", description: "Gluten-Free option"),
+            new Dietary(id: 4, name: "Dairy-Free", description: "Dairy-Free option")
         );
     }
 
@@ -66,9 +66,9 @@ public class DatabaseSeeder(ApiContext context)
     {
         Console.WriteLine("Adding difficulty options...");
         await context.DifficultyOptions.AddRangeAsync(
-            new DifficultyOption(id: 1, name: "Easy"),
-            new DifficultyOption(id: 2, name: "Medium"),
-            new DifficultyOption(id: 3, name: "Hard")
+            new Difficulty(id: 1, name: "Easy"),
+            new Difficulty(id: 2, name: "Medium"),
+            new Difficulty(id: 3, name: "Hard")
         );
     }
 }

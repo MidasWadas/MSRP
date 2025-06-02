@@ -2,7 +2,7 @@ using MediatR;
 using MSRP.Application.DTOs.RecipeDto;
 using MSRP.Application.Interfaces.Generator;
 using MSRP.Application.Interfaces.RecipeRepository;
-using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Application.Commands.Recipes.CreateRecipe;
 
@@ -27,7 +27,7 @@ public class CreateRecipeCommandHandler(IRecipeRepository recipeRepository, IGen
             request.DietariesIds,
             request.Ingredients,
             request.Instructions,
-            request.IsFavorite);
+            request.CreatedByUserId);
                 
         var createdRecipe = await recipeRepository.CreateRecipeAsync(recipe, cancellationToken);
         

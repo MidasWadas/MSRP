@@ -1,8 +1,8 @@
-using MSRP.Domain.Entities.DietaryOption;
+using MSRP.Domain.Dietary;
 
 namespace MSRP.Application.Interfaces.DietaryOptionRepository;
 
 public interface IDietaryOptionRepository
 {
-    Task<List<DietaryOption>?> GetDietaryOptionsAsync(CancellationToken cancellationToken);
+    Task<List<Dietary>?> GetDietaryOptionsAsync(CancellationToken cancellationToken);
 }

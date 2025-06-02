@@ -1,17 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using MSRP.Domain.Entities.CuisineOption;
-using MSRP.Domain.Entities.DietaryOption;
-using MSRP.Domain.Entities.DifficultyOption;
-using MSRP.Domain.Entities.MealType;
-using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Cuisine;
+using MSRP.Domain.Dietary;
+using MSRP.Domain.Difficulty;
+using MSRP.Domain.MealType;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Infrastructure.Persistence;
 
 public partial class ApiContext
 {
     public DbSet<Recipe> Recepies { get; set; }
-    public DbSet<CuisineOption> CuisineOptions { get; set; }
+    public DbSet<Cuisine> CuisineOptions { get; set; }
     public DbSet<MealType> MealTypes { get; set; }
-    public DbSet<DietaryOption> DietaryOptions { get; set; }
-    public DbSet<DifficultyOption> DifficultyOptions { get; set; }
+    public DbSet<Dietary> DietaryOptions { get; set; }
+    public DbSet<Difficulty> DifficultyOptions { get; set; }
 }

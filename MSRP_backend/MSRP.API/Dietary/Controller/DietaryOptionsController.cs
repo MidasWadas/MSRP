@@ -1,0 +1,21 @@
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using MSRP.Application.DTOs.DietaryOptionDto;
+using MSRP.Application.Queries.DietaryOptions.GetDietaryOptions;
+
+namespace MSRP.API.Dietary.Controller;
+
+[Route("api/[controller]")]
+[ApiController]
+public class DietaryOptionsController(IMediator mediator) : ControllerBase
+{
+    [HttpGet("get-dietary-options")]
+    public async Task<ActionResult<IEnumerable<DietaryOptionDto>>> GetDietaryOptions()
+    {
+        var options = await mediator.Send(new GetDietaryOptionsQuery());
+        if (options == null)
+            return NotFound();
+        
+        return Ok(options);
+    }
+}

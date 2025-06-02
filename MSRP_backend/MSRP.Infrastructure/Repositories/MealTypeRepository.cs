@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MSRP.Application.Interfaces.MealTypeRepository;
-using MSRP.Domain.Entities.MealType;
+using MSRP.Domain.MealType;
 using MSRP.Infrastructure.Persistence;
 
 namespace MSRP.Infrastructure.Repositories;
