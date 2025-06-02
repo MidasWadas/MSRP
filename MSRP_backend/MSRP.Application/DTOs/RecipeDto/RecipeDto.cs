@@ -1,5 +1,4 @@
-using MSRP.Domain.Entities.Recipe;
-using MSRP.Domain.Entities.Recipe.ValueObjects;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Application.DTOs.RecipeDto
 {

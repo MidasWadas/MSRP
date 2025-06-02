@@ -1,5 +1,6 @@
 using MSRP.Application.DTOs.RecipeDto;
 using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Application.Interfaces.RecipeRepository;
 

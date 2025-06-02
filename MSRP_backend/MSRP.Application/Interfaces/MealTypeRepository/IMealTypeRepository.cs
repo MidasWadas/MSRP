@@ -1,4 +1,4 @@
-using MSRP.Domain.Entities.MealType;
+using MSRP.Domain.MealType;
 
 namespace MSRP.Application.Interfaces.MealTypeRepository;
 

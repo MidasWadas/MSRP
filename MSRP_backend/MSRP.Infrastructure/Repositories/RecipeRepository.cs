@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using MSRP.Application.DTOs.RecipeDto;
 using MSRP.Application.Interfaces.RecipeRepository;
-using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Recipe;
 using MSRP.Infrastructure.Persistence;
 
 namespace MSRP.Infrastructure.Repositories
@@ -31,8 +30,8 @@ namespace MSRP.Infrastructure.Repositories
 
         public async Task<Recipe> UpdateRecipeAsync(int id, Recipe recipe, CancellationToken cancellationToken)
         {
-            _ = await context.Recepies.FindAsync([id], cancellationToken) 
-                ?? throw new KeyNotFoundException($"Recipe with ID {id} not found");
+            if (!await context.Recepies.AnyAsync(r => r.Id == id, cancellationToken)) 
+                throw new KeyNotFoundException($"Recipe with ID {id} not found");
 
             context.Recepies.Update(recipe);
             await context.SaveChangesAsync(cancellationToken);

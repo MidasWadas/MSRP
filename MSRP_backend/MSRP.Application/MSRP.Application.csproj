@@ -15,4 +15,12 @@
       <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Cuisine\" />
+      <Folder Include="Dietary\" />
+      <Folder Include="Difficulty\" />
+      <Folder Include="MealType\" />
+      <Folder Include="Recipe\" />
+    </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-using MSRP.Domain.Entities.DietaryOption;
+using MSRP.Domain.Dietary;
 
 namespace MSRP.Application.DTOs.DietaryOptionDto;
 
@@ -8,9 +8,9 @@ public class DietaryOptionDto(int id, string name, string description)
     public string Name { get; init; } = name;
     public string Description { get; init; } = description;
     
-    public static DietaryOptionDto FromDietaryOption(DietaryOption dietaryOption) =>
-        new(dietaryOption.Id, dietaryOption.Name, dietaryOption.Description);
+    public static DietaryOptionDto FromDietaryOption(Dietary dietary) =>
+        new(dietary.Id, dietary.Name, dietary.Description);
     
-    public static DietaryOption ToDietaryOption(DietaryOptionDto dietaryOptionDto) =>
+    public static Dietary ToDietaryOption(DietaryOptionDto dietaryOptionDto) =>
         new(dietaryOptionDto.Id, dietaryOptionDto.Name, dietaryOptionDto.Description);
 }

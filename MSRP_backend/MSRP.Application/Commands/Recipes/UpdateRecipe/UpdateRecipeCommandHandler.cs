@@ -1,7 +1,7 @@
 using MediatR;
 using MSRP.Application.DTOs.RecipeDto;
 using MSRP.Application.Interfaces.RecipeRepository;
-using MSRP.Domain.Entities.Recipe;
+using MSRP.Domain.Recipe;
 
 namespace MSRP.Application.Commands.Recipes.UpdateRecipe;
 
