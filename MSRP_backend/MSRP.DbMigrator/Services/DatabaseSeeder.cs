@@ -13,16 +13,16 @@ public class DatabaseSeeder(ApiContext context)
     {
         Console.WriteLine("Initializing data...");
 
-        if (!await context.CuisineOptions.AnyAsync())
+        if (!await context.Cuisines.AnyAsync())
             await SeedCuisineOptionsAsync();
 
         if (!await context.MealTypes.AnyAsync())
             await SeedMealTypesAsync();
 
-        if (!await context.DietaryOptions.AnyAsync())
+        if (!await context.Dietaries.AnyAsync())
             await SeedDietaryOptionsAsync();
 
-        if (!await context.DifficultyOptions.AnyAsync())
+        if (!await context.Difficulties.AnyAsync())
             await SeedDifficultyOptionsAsync();
 
         await context.SaveChangesAsync();
@@ -31,7 +31,7 @@ public class DatabaseSeeder(ApiContext context)
     private async Task SeedCuisineOptionsAsync()
     {
         Console.WriteLine("Adding cuisine options...");
-        await context.CuisineOptions.AddRangeAsync(
+        await context.Cuisines.AddRangeAsync(
             new Cuisine(id: 1, name: "Italian", description: "Italian cuisine"),
             new Cuisine(id: 2, name: "Mexican", description: "Mexican cuisine"),
             new Cuisine(id: 3, name: "Japanese", description: "Japanese cuisine"),
@@ -54,7 +54,7 @@ public class DatabaseSeeder(ApiContext context)
     private async Task SeedDietaryOptionsAsync()
     {
         Console.WriteLine("Adding dietary options...");
-        await context.DietaryOptions.AddRangeAsync(
+        await context.Dietaries.AddRangeAsync(
             new Dietary(id: 1, name: "Vegetarian", description: "Vegetarian option"),
             new Dietary(id: 2, name: "Vegan", description: "Vegan option"),
             new Dietary(id: 3, name: "Gluten-Free", description: "Gluten-Free option"),
@@ -65,7 +65,7 @@ public class DatabaseSeeder(ApiContext context)
     private async Task SeedDifficultyOptionsAsync()
     {
         Console.WriteLine("Adding difficulty options...");
-        await context.DifficultyOptions.AddRangeAsync(
+        await context.Difficulties.AddRangeAsync(
             new Difficulty(id: 1, name: "Easy"),
             new Difficulty(id: 2, name: "Medium"),
             new Difficulty(id: 3, name: "Hard")

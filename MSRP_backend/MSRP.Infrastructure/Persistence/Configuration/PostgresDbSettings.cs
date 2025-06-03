@@ -1,6 +1,3 @@
 namespace MSRP.Infrastructure.Persistence.Configuration;
 
-public class PostgresDbSettings
-{
-    public string ConnectionString { get; set; }
-}
+public sealed record PostgresDbSettings(string ConnectionString);
