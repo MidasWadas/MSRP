@@ -16,11 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Cuisine\" />
-      <Folder Include="Dietary\" />
-      <Folder Include="Difficulty\" />
-      <Folder Include="MealType\" />
-      <Folder Include="Recipe\" />
+      <Folder Include="Features\" />
     </ItemGroup>
 
 </Project>

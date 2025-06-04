@@ -9,9 +9,9 @@ namespace MSRP.Infrastructure.Persistence;
 
 public partial class ApiContext
 {
-    public DbSet<Recipe> Recepies { get; set; }
-    public DbSet<Cuisine> CuisineOptions { get; set; }
+    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<Cuisine> Cuisines { get; set; }
     public DbSet<MealType> MealTypes { get; set; }
-    public DbSet<Dietary> DietaryOptions { get; set; }
-    public DbSet<Difficulty> DifficultyOptions { get; set; }
+    public DbSet<Dietary> Dietaries { get; set; }
+    public DbSet<Difficulty> Difficulties { get; set; }
 }

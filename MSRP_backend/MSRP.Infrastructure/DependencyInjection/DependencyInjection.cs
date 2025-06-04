@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MSRP.Application.Interfaces.RecipeRepository;
+using MSRP.Application.Features.Recipes.Interface;
 using MSRP.Infrastructure.Persistence;
 using MSRP.Infrastructure.Repositories;
 
@@ -16,7 +16,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
         
         // Rejestracja repozytorium
-        services.AddScoped<IRecipeRepository, RecipeRepository>();
+        services.AddScoped<IRecipesRepository, RecipesRepository>();
         
         return services;
     }
