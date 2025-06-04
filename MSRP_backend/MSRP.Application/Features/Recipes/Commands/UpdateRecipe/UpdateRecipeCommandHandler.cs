@@ -6,9 +6,9 @@ using MSRP.Domain.Recipe;
 namespace MSRP.Application.Features.Recipes.Commands.UpdateRecipe;
 
 public class UpdateRecipeCommandHandler(IRecipesRepository recipesRepository) 
-    : IRequestHandler<UpdateRecipeCommand, RecipeDto>
+    : IRequestHandler<UpdateRecipeCommand, RecipeDto?>
 {
-    public async Task<RecipeDto> Handle(UpdateRecipeCommand command, CancellationToken cancellationToken)
+    public async Task<RecipeDto?> Handle(UpdateRecipeCommand command, CancellationToken cancellationToken)
     {
         var recipe = new Recipe(
             command.Id,
@@ -26,8 +26,11 @@ public class UpdateRecipeCommandHandler(IRecipesRepository recipesRepository)
             command.Instructions,
             command.UpdatedByUserId
         );
-        var updatedRecipe = await recipesRepository.UpdateRecipeAsync(command.Id, recipe, cancellationToken);
+        var updatedRecipeId = await recipesRepository.UpdateRecipeAsync(command.Id, recipe, cancellationToken);
         
-        return RecipeDto.FromRecipe(updatedRecipe);
+        if (updatedRecipeId > 0)
+            return await recipesRepository.GetRecipeByIdAsync(updatedRecipeId, cancellationToken);
+        
+        throw new Exception("Failed to update recipe");
     }
 }

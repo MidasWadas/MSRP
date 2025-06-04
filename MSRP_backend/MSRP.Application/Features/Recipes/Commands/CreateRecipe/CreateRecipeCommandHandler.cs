@@ -7,9 +7,9 @@ using MSRP.Domain.Recipe;
 namespace MSRP.Application.Features.Recipes.Commands.CreateRecipe;
 
 public class CreateRecipeCommandHandler(IRecipesRepository recipesRepository, IGenerator generator)
-    : IRequestHandler<CreateRecipeCommand, RecipeDto>
+    : IRequestHandler<CreateRecipeCommand, RecipeDto?>
 {
-    public async Task<RecipeDto> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
+    public async Task<RecipeDto?> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
     {
         var nextRecipeId = await generator.GenerateNextIdAsync<Recipe>(cancellationToken);
         
@@ -29,8 +29,11 @@ public class CreateRecipeCommandHandler(IRecipesRepository recipesRepository, IG
             request.Instructions,
             request.CreatedByUserId);
                 
-        var createdRecipe = await recipesRepository.CreateRecipeAsync(recipe, cancellationToken);
+        var createdRecipeId = await recipesRepository.CreateRecipeAsync(recipe, cancellationToken);
         
-        return RecipeDto.FromRecipe(createdRecipe);
+        if (createdRecipeId > 0)
+            return await recipesRepository.GetRecipeByIdAsync(createdRecipeId, cancellationToken);
+        
+        throw new Exception("Failed to create recipe");
     }
 }

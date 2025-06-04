@@ -17,4 +17,4 @@ public sealed record CreateRecipeCommand(
     List<string> Ingredients,
     List<string> Instructions,
     int CreatedByUserId
-) : IRequest<RecipeDto>;
+) : IRequest<RecipeDto?>;

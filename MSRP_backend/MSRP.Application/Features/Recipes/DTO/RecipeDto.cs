@@ -46,7 +46,7 @@ namespace MSRP.Application.Features.Recipes.DTO
         }
         
         //I need to find a solution to grabbing records (Id and Name) from Recipe and put that in RecipeDTO
-        public static RecipeDto FromRecipe(Recipe recipe) => null;
+        //public static RecipeDto FromRecipe(Recipe recipe) => null;
             // new(
             //     recipe.Id,
             //     recipe.Title,

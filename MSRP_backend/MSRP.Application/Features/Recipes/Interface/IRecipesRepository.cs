@@ -7,8 +7,8 @@ public interface IRecipesRepository
 {
     Task<List<RecipeDto>> GetRecipesAsync(CancellationToken cancellationToken);
     Task<RecipeDto?> GetRecipeByIdAsync(int id, CancellationToken cancellationToken);
-    Task<Recipe> CreateRecipeAsync(Recipe recipe, CancellationToken cancellationToken);
-    Task<Recipe> UpdateRecipeAsync(int id, Recipe recipe, CancellationToken cancellationToken);
+    Task<int> CreateRecipeAsync(Recipe recipe, CancellationToken cancellationToken);
+    Task<int> UpdateRecipeAsync(int id, Recipe recipe, CancellationToken cancellationToken);
     Task<bool> DeleteRecipeAsync(int id, CancellationToken cancellationToken);
     Task<List<RecipeDto>> GetRecipesByCuisineIdAsync(int cuisineId, CancellationToken cancellationToken);
     Task<List<RecipeDto>> GetRecipesByMealTypeIdAsync(int mealTypeId, CancellationToken cancellationToken);

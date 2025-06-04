@@ -18,4 +18,4 @@ public sealed record UpdateRecipeCommand(
     List<string> Ingredients,
     List<string> Instructions,
     int UpdatedByUserId
-    ) : IRequest<RecipeDto>;
+    ) : IRequest<RecipeDto?>;

@@ -59,7 +59,7 @@ namespace MSRP.API.Features.Recipe.Controller
 				request.CreatedByUserId
 				));
 			
-			return Created(result.Id.ToString(), result);
+			return Created(result?.Id.ToString(), result);
 		}
 		
 		[HttpPut("update-recipe/{id:int}")]
