@@ -5,12 +5,12 @@ namespace MSRP.Application.Features.Recipes.Interface;
 
 public interface IRecipesRepository
 {
-    Task<List<RecipeDto>> GetRecipesAsync(CancellationToken cancellationToken);
-    Task<RecipeDto?> GetRecipeByIdAsync(int id, CancellationToken cancellationToken);
-    Task<int> CreateRecipeAsync(Recipe recipe, CancellationToken cancellationToken);
-    Task<int> UpdateRecipeAsync(int id, Recipe recipe, CancellationToken cancellationToken);
-    Task<bool> DeleteRecipeAsync(int id, CancellationToken cancellationToken);
-    Task<List<RecipeDto>> GetRecipesByCuisineIdAsync(int cuisineId, CancellationToken cancellationToken);
-    Task<List<RecipeDto>> GetRecipesByMealTypeIdAsync(int mealTypeId, CancellationToken cancellationToken);
-    Task<List<RecipeDto>> GetRecipesByDietaryIdAsync(int dietaryId, CancellationToken cancellationToken);
+    Task<List<RecipeDto>> GetAllAsync(CancellationToken cancellationToken);
+    Task<RecipeDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
+    Task<int> CreateAsync(Recipe recipe, CancellationToken cancellationToken);
+    Task<int> UpdateAsync(int id, Recipe recipe, CancellationToken cancellationToken);
+    Task<bool> DeleteAsync(int id, CancellationToken cancellationToken);
+    Task<List<RecipeDto>> GetByCuisineIdAsync(int cuisineId, CancellationToken cancellationToken);
+    Task<List<RecipeDto>> GetByMealTypeIdAsync(int mealTypeId, CancellationToken cancellationToken);
+    Task<List<RecipeDto>> GetByDietaryIdAsync(int dietaryId, CancellationToken cancellationToken);
 }

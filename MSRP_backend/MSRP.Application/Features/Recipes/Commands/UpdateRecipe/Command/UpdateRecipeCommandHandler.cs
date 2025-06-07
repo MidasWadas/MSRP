@@ -26,10 +26,10 @@ public class UpdateRecipeCommandHandler(IRecipesRepository recipesRepository)
             command.Instructions,
             command.UpdatedByUserId
         );
-        var updatedRecipeId = await recipesRepository.UpdateRecipeAsync(command.Id, recipe, cancellationToken);
+        var updatedRecipeId = await recipesRepository.UpdateAsync(command.Id, recipe, cancellationToken);
         
         if (updatedRecipeId > 0)
-            return new UpdateRecipeResponse(await recipesRepository.GetRecipeByIdAsync(updatedRecipeId, cancellationToken));
+            return new UpdateRecipeResponse(await recipesRepository.GetByIdAsync(updatedRecipeId, cancellationToken));
         
         throw new Exception("Failed to update recipe");
     }
