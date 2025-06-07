@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MSRP.Application.Features.Difficulties.DTO;
 using MSRP.Application.Features.Difficulties.Queries.GetDifficulties;
 using MSRP.Application.Features.Difficulties.Queries.GetDifficulties.Query;
+using MSRP.Application.Features.Difficulties.Queries.GetDifficulties.Response;
 
 namespace MSRP.API.Features.Difficulty.Controller;
 
@@ -11,12 +12,10 @@ namespace MSRP.API.Features.Difficulty.Controller;
 public class DifficultyOptionsController(IMediator mediator) : ControllerBase
 {
     [HttpGet("get-difficulty-options")]
-    public async Task<ActionResult<IEnumerable<DifficultyDto>>> GetDifficultyOptions()
+    [ProducesResponseType<GetDifficultiesResponse>(StatusCodes.Status200OK)]
+    public async Task<ActionResult<GetDifficultiesResponse>> GetDifficultyOptions()
     {
         var options = await mediator.Send(new GetDifficultiesQuery());
-        if (options == null)
-            return NotFound();
-        
         return Ok(options);
     }
 }

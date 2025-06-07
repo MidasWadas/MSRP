@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using MSRP.API.Features.Recipe.Requests.CreateRecipe;
 using MSRP.API.Features.Recipe.Requests.GetRecipe;
 using MSRP.API.Features.Recipe.Requests.UpdateRecipe;
-using MSRP.Application.Features.Recipes.Commands.CreateRecipe;
-using MSRP.Application.Features.Recipes.Commands.DeleteRecipe;
-using MSRP.Application.Features.Recipes.Commands.UpdateRecipe;
+using MSRP.Application.Features.Recipes.Commands.CreateRecipe.Command;
+using MSRP.Application.Features.Recipes.Commands.CreateRecipe.Response;
+using MSRP.Application.Features.Recipes.Commands.DeleteRecipe.Command;
+using MSRP.Application.Features.Recipes.Commands.DeleteRecipe.Response;
+using MSRP.Application.Features.Recipes.Commands.UpdateRecipe.Command;
+using MSRP.Application.Features.Recipes.Commands.UpdateRecipe.Response;
 using MSRP.Application.Features.Recipes.DTO;
 using MSRP.Application.Features.Recipes.Queries.GetFavoriteRecipes.Query;
 using MSRP.Application.Features.Recipes.Queries.GetRecipe.Query;
@@ -41,7 +44,8 @@ namespace MSRP.API.Features.Recipe.Controller
 		}
 
 		[HttpPost("create-recipe")]
-		public async Task<ActionResult<RecipeDto>> CreateRecipe([FromBody] CreateRecipeRequest request)
+		[ProducesResponseType<CreateRecipeResponse>(StatusCodes.Status201Created)]
+		public async Task<ActionResult<CreateRecipeResponse>> CreateRecipe([FromBody] CreateRecipeRequest request)
 		{
 			var result = await mediator.Send(new CreateRecipeCommand(
 				request.Title,
@@ -59,11 +63,12 @@ namespace MSRP.API.Features.Recipe.Controller
 				request.CreatedByUserId
 				));
 			
-			return Created(result?.Id.ToString(), result);
+			return Created($"/api/recipes/get-recipe?id={result.RecipeDto?.Id}", result);
 		}
 		
 		[HttpPut("update-recipe/{id:int}")]
-		public async Task<IActionResult> UpdateRecipe(int id, UpdateRecipeRequest request)
+		[ProducesResponseType<UpdateRecipeResponse>(StatusCodes.Status200OK)]
+		public async Task<ActionResult<UpdateRecipeResponse>> UpdateRecipe(int id, UpdateRecipeRequest request)
 		{
 			if (id != request.Id)
 				return BadRequest();
@@ -89,36 +94,37 @@ namespace MSRP.API.Features.Recipe.Controller
 		}
 		
 		[HttpDelete("delete-recipe/{id:int}")]
+		[ProducesResponseType<DeleteRecipeResponse>(StatusCodes.Status200OK)]
 		public async Task<IActionResult> DeleteRecipe(int id)
 		{
-			var deleted = await mediator.Send(new DeleteRecipeCommand(id));
-			
-			if (deleted)
-				return Ok();
-			
-			return NotFound();
+			await mediator.Send(new DeleteRecipeCommand(id));
+			return Ok();
 		}
 		
 		[HttpGet("get-recipes-by-cuisine/{cuisineId:int}")]
-		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipesByCuisine(int cuisineId)
+		[ProducesResponseType<GetRecipesResponse>(StatusCodes.Status200OK)]
+		public async Task<ActionResult<GetRecipesResponse>> GetRecipesByCuisine(int cuisineId)
 		{
 			return Ok(await mediator.Send(new GetRecipesByCuisineQuery(cuisineId)));
 		}
 		
 		[HttpGet("get-recipes-by-meal-type/{mealTypeId:int}")]
-		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipesByMealType(int mealTypeId)
+		[ProducesResponseType<GetRecipesResponse>(StatusCodes.Status200OK)]
+		public async Task<ActionResult<GetRecipesResponse>> GetRecipesByMealType(int mealTypeId)
 		{
 			return Ok(await mediator.Send(new GetRecipesByMealTypeQuery(mealTypeId)));
 		}
 		
 		[HttpGet("get-recipes-by-dietary/{dietaryId:int}")]
-		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetRecipesByDietary(int dietaryId)
+		[ProducesResponseType<GetRecipesResponse>(StatusCodes.Status200OK)]
+		public async Task<ActionResult<GetRecipesResponse>> GetRecipesByDietary(int dietaryId)
 		{
 			return Ok(await mediator.Send(new GetRecipesByDietaryQuery(dietaryId)));
 		}
 		
 		[HttpGet("get-favorite-recipes")]
-		public async Task<ActionResult<IEnumerable<RecipeDto>>> GetFavoriteRecipes()
+		[ProducesResponseType<GetRecipesResponse>(StatusCodes.Status200OK)]
+		public async Task<ActionResult<GetRecipesResponse>> GetFavoriteRecipes()
 		{
 			return Ok(await mediator.Send(new GetFavoriteRecipesQuery()));
 		}

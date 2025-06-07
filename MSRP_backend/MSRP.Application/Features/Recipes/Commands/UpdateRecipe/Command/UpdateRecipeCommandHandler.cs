@@ -1,14 +1,14 @@
 using MediatR;
-using MSRP.Application.Features.Recipes.DTO;
+using MSRP.Application.Features.Recipes.Commands.UpdateRecipe.Response;
 using MSRP.Application.Features.Recipes.Interface;
 using MSRP.Domain.Recipe;
 
-namespace MSRP.Application.Features.Recipes.Commands.UpdateRecipe;
+namespace MSRP.Application.Features.Recipes.Commands.UpdateRecipe.Command;
 
 public class UpdateRecipeCommandHandler(IRecipesRepository recipesRepository) 
-    : IRequestHandler<UpdateRecipeCommand, RecipeDto?>
+    : IRequestHandler<UpdateRecipeCommand, UpdateRecipeResponse>
 {
-    public async Task<RecipeDto?> Handle(UpdateRecipeCommand command, CancellationToken cancellationToken)
+    public async Task<UpdateRecipeResponse> Handle(UpdateRecipeCommand command, CancellationToken cancellationToken)
     {
         var recipe = new Recipe(
             command.Id,
@@ -29,7 +29,7 @@ public class UpdateRecipeCommandHandler(IRecipesRepository recipesRepository)
         var updatedRecipeId = await recipesRepository.UpdateRecipeAsync(command.Id, recipe, cancellationToken);
         
         if (updatedRecipeId > 0)
-            return await recipesRepository.GetRecipeByIdAsync(updatedRecipeId, cancellationToken);
+            return new UpdateRecipeResponse(await recipesRepository.GetRecipeByIdAsync(updatedRecipeId, cancellationToken));
         
         throw new Exception("Failed to update recipe");
     }

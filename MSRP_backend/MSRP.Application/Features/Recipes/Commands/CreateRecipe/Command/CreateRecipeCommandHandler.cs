@@ -1,15 +1,15 @@
 using MediatR;
-using MSRP.Application.Features.Recipes.DTO;
+using MSRP.Application.Features.Recipes.Commands.CreateRecipe.Response;
 using MSRP.Application.Features.Recipes.Interface;
 using MSRP.Application.Interfaces.Generator;
 using MSRP.Domain.Recipe;
 
-namespace MSRP.Application.Features.Recipes.Commands.CreateRecipe;
+namespace MSRP.Application.Features.Recipes.Commands.CreateRecipe.Command;
 
 public class CreateRecipeCommandHandler(IRecipesRepository recipesRepository, IGenerator generator)
-    : IRequestHandler<CreateRecipeCommand, RecipeDto?>
+    : IRequestHandler<CreateRecipeCommand, CreateRecipeResponse>
 {
-    public async Task<RecipeDto?> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
+    public async Task<CreateRecipeResponse> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
     {
         var nextRecipeId = await generator.GenerateNextIdAsync<Recipe>(cancellationToken);
         
@@ -32,7 +32,8 @@ public class CreateRecipeCommandHandler(IRecipesRepository recipesRepository, IG
         var createdRecipeId = await recipesRepository.CreateRecipeAsync(recipe, cancellationToken);
         
         if (createdRecipeId > 0)
-            return await recipesRepository.GetRecipeByIdAsync(createdRecipeId, cancellationToken);
+            return new CreateRecipeResponse(await recipesRepository.GetRecipeByIdAsync(createdRecipeId, cancellationToken));
+            
         
         throw new Exception("Failed to create recipe");
     }

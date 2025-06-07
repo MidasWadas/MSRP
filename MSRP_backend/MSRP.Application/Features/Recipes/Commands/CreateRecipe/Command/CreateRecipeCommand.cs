@@ -1,10 +1,9 @@
 using MediatR;
-using MSRP.Application.Features.Recipes.DTO;
+using MSRP.Application.Features.Recipes.Commands.CreateRecipe.Response;
 
-namespace MSRP.Application.Features.Recipes.Commands.UpdateRecipe;
+namespace MSRP.Application.Features.Recipes.Commands.CreateRecipe.Command;
 
-public sealed record UpdateRecipeCommand(
-    int Id,
+public sealed record CreateRecipeCommand(
     string Title,
     string Description,
     string ImageUrl,
@@ -17,5 +16,5 @@ public sealed record UpdateRecipeCommand(
     List<int> DietariesIds,
     List<string> Ingredients,
     List<string> Instructions,
-    int UpdatedByUserId
-    ) : IRequest<RecipeDto?>;
+    int CreatedByUserId
+) : IRequest<CreateRecipeResponse>;
