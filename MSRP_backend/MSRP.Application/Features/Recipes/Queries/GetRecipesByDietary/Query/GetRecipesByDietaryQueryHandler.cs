@@ -10,7 +10,7 @@ public class GetRecipesByDietaryQueryHandler(IRecipesRepository repository)
 {
     public async Task<GetRecipesByDietaryResponse> Handle(GetRecipesByDietaryQuery request, CancellationToken cancellationToken)
     {
-        var recipes = await repository.GetRecipesByDietaryIdAsync(request.DietaryId, cancellationToken);
+        var recipes = await repository.GetByDietaryIdAsync(request.DietaryId, cancellationToken);
 
         return new GetRecipesByDietaryResponse(recipes);
     }

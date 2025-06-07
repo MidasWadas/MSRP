@@ -10,7 +10,7 @@ public class GetRecipeQueryHandler(IRecipesRepository repository)
 {
     public async Task<GetRecipeResponse> Handle(GetRecipeQuery request, CancellationToken cancellationToken)
     {
-        var recipe = await repository.GetRecipeByIdAsync(request.Id, cancellationToken);
+        var recipe = await repository.GetByIdAsync(request.Id, cancellationToken);
         
         return new GetRecipeResponse(recipe);
     }

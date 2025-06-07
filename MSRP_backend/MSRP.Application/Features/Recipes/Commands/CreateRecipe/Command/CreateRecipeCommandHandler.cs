@@ -29,10 +29,10 @@ public class CreateRecipeCommandHandler(IRecipesRepository recipesRepository, IG
             request.Instructions,
             request.CreatedByUserId);
                 
-        var createdRecipeId = await recipesRepository.CreateRecipeAsync(recipe, cancellationToken);
+        var createdRecipeId = await recipesRepository.CreateAsync(recipe, cancellationToken);
         
         if (createdRecipeId > 0)
-            return new CreateRecipeResponse(await recipesRepository.GetRecipeByIdAsync(createdRecipeId, cancellationToken));
+            return new CreateRecipeResponse(await recipesRepository.GetByIdAsync(createdRecipeId, cancellationToken));
             
         
         throw new Exception("Failed to create recipe");

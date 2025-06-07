@@ -8,7 +8,7 @@ namespace MSRP.Infrastructure.Repositories
 {
     public class RecipesRepository(ApiContext context) : IRecipesRepository
     {
-        public async Task<List<RecipeDto>> GetRecipesAsync(CancellationToken cancellationToken)
+        public async Task<List<RecipeDto>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await context.Recipes
                 .AsNoTracking()
@@ -46,7 +46,7 @@ namespace MSRP.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<RecipeDto?> GetRecipeByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<RecipeDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
             return await context.Recipes
                 .AsNoTracking()
@@ -85,14 +85,14 @@ namespace MSRP.Infrastructure.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<int> CreateRecipeAsync(Recipe recipe, CancellationToken cancellationToken)
+        public async Task<int> CreateAsync(Recipe recipe, CancellationToken cancellationToken)
         {
             context.Recipes.Add(recipe);
             await context.SaveChangesAsync(cancellationToken);
             return recipe.Id;
         }
 
-        public async Task<int> UpdateRecipeAsync(int id, Recipe recipe, CancellationToken cancellationToken)
+        public async Task<int> UpdateAsync(int id, Recipe recipe, CancellationToken cancellationToken)
         {
             if (!await context.Recipes.AnyAsync(r => r.Id == id, cancellationToken)) 
                 throw new KeyNotFoundException($"Recipe with ID {id} not found");
@@ -102,7 +102,7 @@ namespace MSRP.Infrastructure.Repositories
             return recipe.Id;
         }
         
-        public async Task<bool> DeleteRecipeAsync(int id, CancellationToken cancellationToken)
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
         {
             var recipe = await context.Recipes.FindAsync([id], cancellationToken);
             if (recipe == null)
@@ -113,7 +113,7 @@ namespace MSRP.Infrastructure.Repositories
                 .ContinueWith(t => true, cancellationToken);
         }
 
-        public async Task<List<RecipeDto>> GetRecipesByCuisineIdAsync(int cuisineId, CancellationToken cancellationToken)
+        public async Task<List<RecipeDto>> GetByCuisineIdAsync(int cuisineId, CancellationToken cancellationToken)
         {
             return await context.Recipes
                 .AsNoTracking()
@@ -152,7 +152,7 @@ namespace MSRP.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<List<RecipeDto>> GetRecipesByMealTypeIdAsync(int mealTypeId, CancellationToken cancellationToken)
+        public async Task<List<RecipeDto>> GetByMealTypeIdAsync(int mealTypeId, CancellationToken cancellationToken)
         {
             return await context.Recipes
                 .AsNoTracking()
@@ -191,7 +191,7 @@ namespace MSRP.Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<List<RecipeDto>> GetRecipesByDietaryIdAsync(int dietaryId, CancellationToken cancellationToken)
+        public async Task<List<RecipeDto>> GetByDietaryIdAsync(int dietaryId, CancellationToken cancellationToken)
         {
             return await context.Recipes
                 .AsNoTracking()

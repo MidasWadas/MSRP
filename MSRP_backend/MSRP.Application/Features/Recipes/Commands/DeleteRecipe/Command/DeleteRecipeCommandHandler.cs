@@ -9,7 +9,7 @@ public class DeleteRecipeCommandHandler(IRecipesRepository repository)
 {
     public async Task<DeleteRecipeResponse> Handle(DeleteRecipeCommand request, CancellationToken cancellationToken)
     {
-        var result = await repository.DeleteRecipeAsync(request.Id, cancellationToken);
+        var result = await repository.DeleteAsync(request.Id, cancellationToken);
         
         return result ? new DeleteRecipeResponse() : throw new Exception("Failed to delete recipe");
     }
