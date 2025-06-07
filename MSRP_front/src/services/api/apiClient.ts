@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Get API URL from environment or use default
-const API_URL = process.env.REACT_APP_API_URL || 'https://localhost:44373/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://localhost:44373/api';
 
 console.log('Using API URL:', API_URL);
 

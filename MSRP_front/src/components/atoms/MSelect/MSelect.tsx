@@ -1,6 +1,6 @@
 import React from "react";
 import "./mselect.scss";
-import { IdName } from "types/common";
+import { type IdName } from "types/common";
 
 export interface MSelectProps {
 	id?: string;

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import MModal from "@components/organisms/MModal/MModal";
-import MButton from "@components/atoms/MButton/MButton";
-import MInput from "@components/atoms/MInput/MInput";
-import MSelect from "@components/atoms/MSelect/MSelect";
-import MTextarea from "@components/atoms/MTextarea/MTextarea";
-import MDropdown from "@components/organisms/MDropdown/MDropdown";
-import RecipeCard from "@features/recipes/recipe-card/RecipeCard";
-import { Recipe } from "@features/recipes/Recipes";
+import MModal from "components/organisms/MModal/MModal";
+import MButton from "components/atoms/MButton/MButton";
+import MInput from "components/atoms/MInput/MInput";
+import MSelect from "components/atoms/MSelect/MSelect";
+import MTextarea from "components/atoms/MTextarea/MTextarea";
+import MDropdown from "components/organisms/MDropdown/MDropdown";
+import RecipeCard from "features/recipes/recipe-card/RecipeCard";
+import { type Recipe } from "features/recipes/Recipes";
 import "./RecipeModal.scss";
-import { IdName } from "types/common";
+import { type IdName } from "types/common";
 
 interface RecipeModalProps {
 	recipe: Recipe | null;
@@ -73,8 +73,9 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 					.filter((i) => i.trim() !== ""),
 				dietary: selectedDietary.map((id) => ({
 					id: id,
-					name: dietaryOptions.find((option) => option.id === id)
-						?.name!,
+					name:
+						dietaryOptions.find((option) => option.id === id)
+							?.name ?? "Unknown",
 				})),
 			});
 		}

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $dark-xdark: #1a1f1c;
 $dark-dark: #232926;
 $dark-medium: #2d3532;
@@ -27,7 +29,7 @@ $neutral-dark: #e2e4af;
 $neutral-medium: #e7e9bc;
 $neutral-light: #edeeca;
 $neutral-xlight: #f4f5e1;
-$neutral-lighter: lighten($neutral-xlight, 5%);
+$neutral-lighter: color.scale($neutral-xlight, $lightness: 5%);
 
 $accent-red: #e05c5c;
 $accent-orange: #f0a868;
@@ -87,18 +89,18 @@ $success-dark: #388e3c;
 $success-medium: $success;
 
 $error: $accent-red;
-$error-light: lighten($error, 15%);
-$error-dark: darken($error, 15%);
+$error-light: color.scale($error, $lightness: 15%);
+$error-dark: color.scale($error, $lightness: -15%);
 $error-medium: $error;
 
 $warning: $accent-orange;
-$warning-light: lighten($warning, 15%);
-$warning-dark: darken($warning, 15%);
+$warning-light: color.scale($warning, $lightness: 15%);
+$warning-dark: color.scale($warning, $lightness: -15%);
 $warning-medium: $warning;
 
 $info: $primary-bright;
-$info-light: lighten($info, 15%);
-$info-dark: darken($info, 15%);
+$info-light: color.scale($info, $lightness: 15%);
+$info-dark: color.scale($info, $lightness: -15%);
 $info-medium: $info;
 
 $font-family-primary: 'Roboto', 'Segoe UI', sans-serif;

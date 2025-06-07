@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@use 'styles/variables' as *;
 
 $sidebar-collapsed-width: 60px;
 $sidebar-hover-bg-color: $dark-medium;

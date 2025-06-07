@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { buildClassNames } from "@utils/classNameUtils";
+import { buildClassNames } from "utils/classNameUtils";
 import "./mbutton.scss";
 
 export type ButtonVariant =

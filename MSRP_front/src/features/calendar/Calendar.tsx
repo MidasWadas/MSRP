@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Calendar.css";
-import MButton from "../../components/atoms/MButton/MButton";
-import MText from "../../components/atoms/MText/MText";
+import MButton from "components/atoms/MButton/MButton";
+import MText from "components/atoms/MText/MText";
 
 const Calendar: React.FC = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());

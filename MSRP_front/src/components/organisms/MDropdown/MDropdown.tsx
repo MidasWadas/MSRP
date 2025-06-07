@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useId } from "react";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
-import MTag from "@components/molecules/MTag/MTag";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
 import "./mdropdown.scss";
 
 // Base interface for dropdown option
@@ -141,7 +140,7 @@ const MDropdown = React.forwardRef<HTMLDivElement, MDropdownProps>(
 			radius = "medium",
 			error = false,
 			fullWidth = false,
-			children,
+			//children,
 			label,
 			options = [],
 			selected = [],

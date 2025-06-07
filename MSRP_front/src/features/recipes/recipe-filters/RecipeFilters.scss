@@ -1,7 +1,8 @@
-@import '@styles/variables.scss';
+@use 'sass:color';
+@use 'styles/variables' as *;
 
 .recipe-filters-panel {
-  background-color: lighten($bg-medium, 2%);
+  background-color: color.scale($bg-medium, $lightness: 2%);
   border-radius: $border-radius-lg;
   padding: $spacing-lg;
   box-shadow: $shadow-md;

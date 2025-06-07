@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import MHeader from "../../components/molecules/MHeader/MHeader";
-import MText from "../../components/atoms/MText/MText";
-import MCard from "../../components/molecules/MCard/MCard";
-import MButton from "../../components/atoms/MButton/MButton";
+import MHeader from "components/molecules/MHeader/MHeader";
+import MText from "components/atoms/MText/MText";
+import MCard from "components/molecules/MCard/MCard";
+import MButton from "components/atoms/MButton/MButton";
 import "./Dashboard.scss";
 
 interface DashboardProps {

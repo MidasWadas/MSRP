@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./mrange-slider.scss";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
 
 interface MRangeSliderProps {
 	min: number;

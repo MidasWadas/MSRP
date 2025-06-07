@@ -1,7 +1,7 @@
 import React from "react";
 import "./micontext.scss";
-import { buildClassNames } from "@utils/classNameUtils";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
+import { buildClassNames } from "utils/classNameUtils";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
 
 type IconPlacement = "left" | "right" | "top" | "bottom";
 

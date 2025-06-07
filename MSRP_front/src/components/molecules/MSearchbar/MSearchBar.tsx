@@ -1,5 +1,5 @@
 import React from "react";
-import MInput from "@components/atoms/MInput/MInput";
+import MInput from "components/atoms/MInput/MInput";
 import "./msearchbar.scss";
 
 interface MSearchBarProps {

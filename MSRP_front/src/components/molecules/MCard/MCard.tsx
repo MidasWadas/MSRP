@@ -1,7 +1,7 @@
 import React from "react";
-import { buildClassNames } from "@utils/classNameUtils";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
-import MButton, { MButtonProps } from "@components/atoms/MButton/MButton";
+import { buildClassNames } from "utils/classNameUtils";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
+import MButton, { type MButtonProps } from "components/atoms/MButton/MButton";
 import "./mcard.scss";
 
 export interface MCardProps {

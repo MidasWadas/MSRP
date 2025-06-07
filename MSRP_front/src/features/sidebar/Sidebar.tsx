@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.scss";
-import MButton from "../../components/atoms/MButton/MButton";
+import MButton from "components/atoms/MButton/MButton";
 import {
 	Dashboard,
 	Restaurant,

@@ -1,5 +1,5 @@
 import React from "react";
-import { Recipe } from "../Recipes";
+import { type Recipe } from "../Recipes";
 import MButton from "../../../components/atoms/MButton/MButton";
 import MCard from "../../../components/molecules/MCard/MCard";
 import "./RecipeCard.scss";

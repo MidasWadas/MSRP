@@ -1,4 +1,4 @@
-import { IdName } from 'types/common';
+import { type IdName } from 'types/common';
 import apiClient from './apiClient';
 
 export interface Recipe {

@@ -1,5 +1,5 @@
-import { Recipe } from "../../features/recipes/Recipes";
-import { DropdownOption } from "../../components/organisms/MDropdown/MDropdown";
+import { type Recipe } from "../../features/recipes/Recipes";
+import { type DropdownOption } from "../../components/organisms/MDropdown/MDropdown";
 
 // Meal type options for mocking - matching backend seeded data
 export const mockMealTypeOptions: DropdownOption[] = [

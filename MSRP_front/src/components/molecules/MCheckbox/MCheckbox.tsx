@@ -1,6 +1,6 @@
 import React from "react";
 import "./mcheckbox.scss";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
 
 interface MCheckboxProps {
 	checked: boolean;
