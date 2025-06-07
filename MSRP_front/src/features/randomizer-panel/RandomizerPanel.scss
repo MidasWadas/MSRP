@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../components/atoms/MButton/mbutton.scss';
+@use 'styles/variables' as *;
+@use'components/atoms/MButton/mbutton.scss';
 
 .randomizer-panel {
   background-color: $bg-card;
@@ -14,12 +14,12 @@
     margin-bottom: $spacing-md;
     
     .surprise-button {
-      @extend .m-button !optional;
-      @extend .m-button--accent !optional;
-      @extend .m-button--medium !optional;
       font-size: $font-size-lg;
       padding: $spacing-md $spacing-xl;
       width: 60%;
+      @extend .m-button !optional;
+      @extend .m-button--accent !optional;
+      @extend .m-button--medium !optional;
       
       &:disabled {
         opacity: 0.7;
@@ -42,11 +42,11 @@
       }
       
       .reset-filters {
+        font-size: $font-size-sm;
         @extend .m-button !optional;
         @extend .m-button--outlined !optional;
         @extend .m-button--secondary !optional;
         @extend .m-button--small !optional;
-        font-size: $font-size-sm;
       }
     }
   }

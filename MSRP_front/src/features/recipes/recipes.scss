@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@use 'styles/variables' as *;
 
 .recipes-container {
   display: flex;
@@ -157,9 +157,9 @@
     .recipes-sidebar {
       width: 300px;
       flex-shrink: 0;
-      @include card;
       overflow-y: auto;
       height: calc(100vh - 180px);
+      @include card;
     }
     
     .recipes-main {
@@ -169,16 +169,16 @@
       gap: $spacing-md;
       
       .result-container {
-        @include card;
         flex: 1;
+        @include card;
         
         .loading-state {
-          @include flex-center;
           height: 100%;
           color: $text-medium;
           font-size: $font-size-lg;
           text-align: center;
           padding: $spacing-xl;
+          @include flex-center;
         }
       }
     }

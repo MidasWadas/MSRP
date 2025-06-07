@@ -1,7 +1,7 @@
 import React from "react";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
-import MCheckbox from "@components/molecules/MCheckbox/MCheckbox";
-import MButton from "@components/atoms/MButton/MButton";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
+import MCheckbox from "components/molecules/MCheckbox/MCheckbox";
+import MButton from "components/atoms/MButton/MButton";
 import "./mfilter-group.scss";
 
 export interface FilterOption {

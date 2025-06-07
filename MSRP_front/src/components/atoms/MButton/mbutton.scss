@@ -1,4 +1,7 @@
-@import '../../../styles/variables';
+@use "sass:color";
+@use "sass:math";
+@use 'styles/variables' as *;
+
 
 .m-button {
     display: inline-flex;
@@ -14,7 +17,7 @@
     outline: none;
     
     &--small {
-        padding: $spacing-sm / 2 $spacing-sm;
+        padding: math.div($spacing-sm, 2) $spacing-sm;
         font-size: $font-size-xs;
         height: 32px;
     }
@@ -155,11 +158,11 @@
         color: $text-light;
         
         &:hover:not(:disabled) {
-            background-color: darken($error, 5%);
+            background-color: color.scale($error, $lightness: -5%);
         }
-        
+
         &:active:not(:disabled) {
-            background-color: darken($error, 10%);
+            background-color: color.scale($error, $lightness: -10%);
         }
     }
     

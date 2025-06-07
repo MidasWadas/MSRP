@@ -1,4 +1,4 @@
-@import '@styles/variables';
+@use 'styles/variables' as *;
 
 .app-container {
   display: flex;
@@ -140,6 +140,13 @@
 }
 
 .App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
   .app-container {
     display: flex;
     width: 100%;
@@ -166,13 +173,6 @@
       margin-left: 250px;
     }
   }
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {

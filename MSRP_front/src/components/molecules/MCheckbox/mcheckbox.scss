@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@use 'styles/variables' as *;
 
 .m-checkbox {
   display: inline-block;

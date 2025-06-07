@@ -1,12 +1,12 @@
-@import '../../styles/variables';
-@import '../../components/atoms/MButton/mbutton.scss';
+@use 'styles/variables' as *;
+@use'components/atoms/MButton/mbutton.scss';
 
 .empty-state {
-  @include flex-column;
-  @include flex-center;
   padding: $spacing-xl;
   text-align: center;
   height: 100%;
+  @include flex-column;
+  @include flex-center;
   
   .empty-icon {
     font-size: 48px;

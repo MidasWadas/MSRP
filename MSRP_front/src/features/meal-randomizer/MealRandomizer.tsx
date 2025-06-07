@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import RandomizerPanel from "../randomizer-panel/RandomizerPanel";
-import RecipeFilters from "../recipes/recipe-filters/RecipeFilters";
 import RecipeCard from "../recipes/recipe-card/RecipeCard";
 import EmptyState from "../empty-state/EmptyState";
-import { Recipe, FilterOptions } from "../recipes/Recipes";
-import MButton from "../../components/atoms/MButton/MButton";
-import MText from "../../components/atoms/MText/MText";
+import type { Recipe, FilterOptions } from "../recipes/Recipes";
+import MButton from "components/atoms/MButton/MButton";
+import MText from "components/atoms/MText/MText";
 import "./MealRandomizer.scss";
-import useCuisineOptions from "../../hooks/useCuisineOptions";
-import useMealTypes from "../../hooks/useMealTypes";
-import useDietaryOptions from "../../hooks/useDietaryOptions";
+import useCuisineOptions from "hooks/useCuisineOptions";
+import useMealTypes from "hooks/useMealTypes";
+import useDietaryOptions from "hooks/useDietaryOptions";
 
 interface MealRandomizerProps {
 	recipes: Recipe[];

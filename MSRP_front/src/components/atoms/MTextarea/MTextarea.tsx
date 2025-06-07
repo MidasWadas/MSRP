@@ -1,6 +1,6 @@
 import React from "react";
 import "./mtextarea.scss";
-import { buildClassNames } from "@utils/classNameUtils";
+import { buildClassNames } from "utils/classNameUtils";
 
 export interface MTextareaProps {
 	id?: string;

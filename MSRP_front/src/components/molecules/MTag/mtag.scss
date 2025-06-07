@@ -1,4 +1,5 @@
-@import '../../../styles/variables';
+@use 'sass:color';
+@use 'styles/variables' as *;
 
 .m-tag {
   display: inline-flex;
@@ -382,18 +383,18 @@
     }
     
     &.m-tag--cuisine {
-      background-color: rgba(#5E35B1, 0.15);
-      color: darken(#5E35B1, 10%);
+      background-color: color.adjust(#5E35B1, $alpha: 0.15);
+      color: color.scale(#5E35B1, $lightness: -10%);
     }
-    
+
     &.m-tag--meal {
-      background-color: rgba(#00897B, 0.15);
-      color: darken(#00897B, 10%);
+      background-color: color.adjust(#00897B, $alpha: 0.15);
+      color: color.scale(#00897B, $lightness: -10%);
     }
-    
+
     &.m-tag--dietary {
-      background-color: rgba(#7CB342, 0.15);
-      color: darken(#7CB342, 10%);
+      background-color: color.adjust(#7CB342, $alpha: 0.15);
+      color: color.scale(#7CB342, $lightness: -10%);
     }
   }
   

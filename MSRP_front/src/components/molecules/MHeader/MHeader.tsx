@@ -1,6 +1,6 @@
 import React from "react";
 import "./mheader.scss";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
 
 export type HeaderSize = "default" | "small" | "medium" | "large" | "xlarge";
 

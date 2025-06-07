@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import MHeader from "../../components/molecules/MHeader/MHeader";
-import Text from "../../components/atoms/MText/MText";
+import MHeader from "components/molecules/MHeader/MHeader";
+import Text from "components/atoms/MText/MText";
 import RecipeCard from "./recipe-card/RecipeCard";
-import SearchBar from "../../components/molecules/MSearchbar/MSearchBar";
+import SearchBar from "components/molecules/MSearchbar/MSearchBar";
 import EmptyState from "../empty-state/EmptyState";
-import MButton from "../../components/atoms/MButton/MButton";
+import MButton from "components/atoms/MButton/MButton";
 import MDropdown, {
-	DropdownOption,
-} from "../../components/organisms/MDropdown/MDropdown";
+	type DropdownOption,
+} from "components/organisms/MDropdown/MDropdown";
 import RecipeModal from "./recipe-modal/RecipeModal";
 import {
 	GridView,
@@ -17,18 +17,19 @@ import {
 	ViewModuleOutlined,
 } from "@mui/icons-material";
 import "./recipes.scss";
-import recipeService, {
+import recipeService from "services/api/recipeService";
+import type {
 	RecipeFilterParams,
 	CuisineOption,
 	MealType,
 	DifficultyOptions,
-} from "../../services/api/recipeService";
-import { mockRecipes } from "../../mocks/recipes/mockRecipes";
-import useCuisineOptions from "../../hooks/useCuisineOptions";
-import useMealTypes from "../../hooks/useMealTypes";
+} from "services/api/recipeService";
+import { mockRecipes } from "mocks/recipes/mockRecipes";
+import useCuisineOptions from "hooks/useCuisineOptions";
+import useMealTypes from "hooks/useMealTypes";
 import useDifficultyOptions from "hooks/useDifficultyOptions";
 import useDietaryOptions from "hooks/useDietaryOptions";
-import { IdName } from "types/common";
+import { type IdName } from "types/common";
 
 export interface Recipe {
 	id: number;

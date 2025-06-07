@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import "./mmodal.scss";
-import { buildClassNames } from "@utils/classNameUtils";
-import MText, { MTextProps } from "@components/atoms/MText/MText";
-import MButton, { MButtonProps } from "@components/atoms/MButton/MButton";
+import { buildClassNames } from "utils/classNameUtils";
+import MText, { type MTextProps } from "components/atoms/MText/MText";
+import MButton, { type MButtonProps } from "components/atoms/MButton/MButton";
 
 interface MModalProps {
 	isOpen: boolean;

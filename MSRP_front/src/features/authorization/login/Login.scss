@@ -1,4 +1,5 @@
-@import '../../../styles/variables';
+@use 'sass:math';
+@use 'styles/variables' as *;
 
 .login-container {
     display: flex;
@@ -53,7 +54,7 @@
             .error-message {
                 color: $error;
                 font-size: $font-size-sm;
-                margin-top: $spacing-sm / 2;
+                margin-top: math.div($spacing-sm, 2);
             }
         }
 

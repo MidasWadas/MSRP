@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import recipeService, { CuisineOption } from '../services/api/recipeService';
+import recipeService, { type CuisineOption } from '../services/api/recipeService';
 
 export const useCuisineOptions = () => {
   const [cuisineOptions, setCuisineOptions] = useState<CuisineOption[]>([]);
@@ -13,20 +13,27 @@ export const useCuisineOptions = () => {
         const options = await recipeService.getCuisineOptions();
         setCuisineOptions(options);
         setError(null);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Failed to fetch cuisine options:', err);
         
+        // Type assertion for the error object
+        const error = err as {
+          code?: string;
+          message?: string;
+          response?: { status?: number };
+        };
+        
         // Set specific error messages based on error type
-        if (err.code === 'ECONNREFUSED' || err.code === 'ECONNABORTED') {
+        if (error.code === 'ECONNREFUSED' || error.code === 'ECONNABORTED') {
           setError('Connection to API server failed or timed out. Check if the server is running.');
-        } else if (err.message.includes('certificate')) {
+        } else if (error.message?.includes('certificate')) {
           setError('SSL certificate issue. The application is using mock data for now.');
-        } else if (err.response?.status === 404) {
+        } else if (error.response?.status === 404) {
           setError('API endpoint not found (404). Check the endpoint URL.');
-        } else if (err.response?.status === 500) {
+        } else if (error.response?.status === 500) {
           setError('Server error (500). Check the backend logs.');
         } else {
-          setError(`Failed to load cuisine options: ${err.message}`);
+          setError(`Failed to load cuisine options: ${error.message || 'Unknown error'}`);
         }
       } finally {
         setLoading(false);

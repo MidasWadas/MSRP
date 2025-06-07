@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import MButton from "../../components/atoms/MButton/MButton";
-import MText from "../../components/atoms/MText/MText";
+import MButton from "components/atoms/MButton/MButton";
+import MText from "components/atoms/MText/MText";
 
 interface InventoryItem {
 	id: number;
@@ -74,7 +74,7 @@ const HouseInventory: React.FC = () => {
 				/>
 			</div>
 			<ul className="house-inventory-list">
-				{items.map((item, idx) => (
+				{items.map((item) => (
 					<li key={item.id} className="house-inventory-item">
 						<MText text={item.name} as="span" size="md" />
 						<MButton

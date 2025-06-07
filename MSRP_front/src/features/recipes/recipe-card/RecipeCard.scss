@@ -1,4 +1,4 @@
-@import '@styles/variables.scss';
+@use 'styles/variables' as *;
 
 .recipe-card-wrapper {
   position: relative;

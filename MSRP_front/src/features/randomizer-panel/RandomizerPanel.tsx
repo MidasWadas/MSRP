@@ -1,7 +1,7 @@
 import React from "react";
 import "./RandomizerPanel.scss";
-import MButton from "../../components/atoms/MButton/MButton";
-import MText from "../../components/atoms/MText/MText";
+import MButton from "components/atoms/MButton/MButton";
+import MText from "components/atoms/MText/MText";
 
 interface RandomizerPanelProps {
 	onRandomize: () => void;
