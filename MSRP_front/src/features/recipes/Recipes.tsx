@@ -18,18 +18,13 @@ import {
 } from "@mui/icons-material";
 import "./recipes.scss";
 import recipeService from "services/api/recipeService";
-import type {
-	RecipeFilterParams,
-	CuisineOption,
-	MealType,
-	DifficultyOptions,
-} from "services/api/recipeService";
 import { mockRecipes } from "mocks/recipes/mockRecipes";
 import useCuisineOptions from "hooks/useCuisineOptions";
 import useMealTypes from "hooks/useMealTypes";
 import useDifficultyOptions from "hooks/useDifficultyOptions";
 import useDietaryOptions from "hooks/useDietaryOptions";
 import { type IdName } from "types/common";
+import { useRecipesList } from "./recipes-list/hooks/useRecipesList";
 
 export interface Recipe {
 	id: number;
@@ -78,6 +73,12 @@ const Recipes: React.FC = () => {
 	const [cardSize, setCardSize] = useState<"small" | "medium" | "large">(
 		"medium"
 	);
+
+	const { fetchData, data, isLoading, loadingText } = useRecipesList();
+
+	useEffect(() => {
+		fetchData();
+	}, [fetchData]);
 
 	const {
 		cuisineOptions,
@@ -132,20 +133,20 @@ const Recipes: React.FC = () => {
 		const fetchRecipes = async () => {
 			setLoading(true);
 			try {
-				const filterParams: RecipeFilterParams = {
-					mealType:
-						filterBy.mealType.length > 0 ? filterBy.mealType : [],
-					cuisineType:
-						filterBy.cuisineType.length > 0
-							? filterBy.cuisineType
-							: [],
-					difficulty:
-						filterBy.difficulty.length > 0
-							? filterBy.difficulty
-							: [],
-					searchQuery: searchQuery || undefined,
-					sortBy,
-				};
+				// const filterParams: RecipeFilterParams = {
+				// 	mealType:
+				// 		filterBy.mealType.length > 0 ? filterBy.mealType : [],
+				// 	cuisineType:
+				// 		filterBy.cuisineType.length > 0
+				// 			? filterBy.cuisineType
+				// 			: [],
+				// 	difficulty:
+				// 		filterBy.difficulty.length > 0
+				// 			? filterBy.difficulty
+				// 			: [],
+				// 	searchQuery: searchQuery || undefined,
+				// 	sortBy,
+				// };
 
 				const data = await recipeService.getRecipes();
 				setRecipes(data);
