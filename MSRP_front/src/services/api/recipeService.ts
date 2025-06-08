@@ -57,8 +57,8 @@ export interface RecipeFilterParams {
 const recipeService = {
   getCuisineOptions: async () => {
     try {
-      const response = await apiClient.get('/Recipes/GetCuisineOptions');
-      return response.data as CuisineOption[];
+      const response = await apiClient.get('/Cuisines/get-all');
+      return response.data.cuisines as CuisineOption[];
     } catch (error) {
       console.error('Error fetching cuisine options:', error);
       throw error;
@@ -68,8 +68,8 @@ const recipeService = {
   // Get all meal type options
   getMealTypes: async () => {
     try {
-      const response = await apiClient.get('/Recipes/GetMealTypes');
-      return response.data as MealType[];
+      const response = await apiClient.get('/MealTypes/get-all');
+      return response.data.mealTypes as MealType[]
     } catch (error) {
       console.error('Error fetching meal types:', error);
       throw error;
@@ -79,8 +79,8 @@ const recipeService = {
   // Get all dietary options
   getDietaryOptions: async () => {
     try {
-      const response = await apiClient.get('/Recipes/GetDietaryOptions');
-      return response.data as DietaryOption[];
+      const response = await apiClient.get('/Dietaries/get-all');
+      return response.data.dietaries as DietaryOption[];
     } catch (error) {
       console.error('Error fetching dietary options:', error);
       throw error;
@@ -90,8 +90,8 @@ const recipeService = {
   // Get difficulty options
   getDifficultyOptions: async () => {
     try {
-      const response = await apiClient.get('/Recipes/GetDifficultyOptions');
-      return response.data as DifficultyOptions[];
+      const response = await apiClient.get('/Difficulties/get-all');
+      return response.data.difficulties as DifficultyOptions[];
     } catch (error) {
       console.error('Error fetching difficulty options:', error);
       throw error;
@@ -99,10 +99,10 @@ const recipeService = {
   },
 
   // Get all recipes with optional filtering
-  getRecipes: async (filters?: RecipeFilterParams) => {
+  getRecipes: async (/*filters?: RecipeFilterParams*/) => {
     try {
-      const response = await apiClient.get('/Recipes/GetRecipes', { params: filters });
-      return response.data;
+      const response = await apiClient.get('/Recipes/get-all'/*, { params: filters }*/);
+      return response.data.recipes as Recipe[];
     } catch (error) {
       console.error('Error fetching recipes:', error);
       throw error;
@@ -112,8 +112,8 @@ const recipeService = {
   // Get a single recipe by ID
   getRecipeById: async (id: number) => {
     try {
-      const response = await apiClient.get(`/Recipes/GetRecipe/${id}`);
-      return response.data;
+      const response = await apiClient.get(`/Recipes/get-recipe/${id}`);
+      return response.data.recipe as Recipe;
     } catch (error) {
       console.error(`Error fetching recipe with id ${id}:`, error);
       throw error;
@@ -123,8 +123,8 @@ const recipeService = {
   // Create a new recipe
   createRecipe: async (recipe: Omit<Recipe, 'id'>) => {
     try {
-      const response = await apiClient.post('/Recipes/AddRecipe', recipe);
-      return response.data;
+      const response = await apiClient.post('/Recipes/create-recipe', recipe);
+      return response.data.recipe as Recipe;
     } catch (error) {
       console.error('Error creating recipe:', error);
       throw error;
@@ -134,8 +134,8 @@ const recipeService = {
   // Update an existing recipe
   updateRecipe: async (id: number, recipe: Partial<Recipe>) => {
     try {
-      const response = await apiClient.put(`/Recipes/UpdateRecipe/${id}`, recipe);
-      return response.data;
+      const response = await apiClient.put(`/Recipes/update-recipe/${id}`, recipe);
+      return response.data.recipe as Recipe;
     } catch (error) {
       console.error(`Error updating recipe with id ${id}:`, error);
       throw error;
@@ -145,7 +145,7 @@ const recipeService = {
   // Delete a recipe
   deleteRecipe: async (id: number) => {
     try {
-      const response = await apiClient.delete(`/Recipes/DeleteRecipe/${id}`);
+      const response = await apiClient.delete(`/Recipes/delete-recipe/${id}`);
       return response.data;
     } catch (error) {
       console.error(`Error deleting recipe with id ${id}:`, error);
