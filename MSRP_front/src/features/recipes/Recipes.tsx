@@ -147,8 +147,8 @@ const Recipes: React.FC = () => {
 					sortBy,
 				};
 
-				//const data = await recipeService.getRecipes(filterParams);
-				setRecipes(mockRecipes);
+				const data = await recipeService.getRecipes();
+				setRecipes(data);
 				setError(null);
 			} catch (err) {
 				console.error("Failed to fetch recipes:", err);

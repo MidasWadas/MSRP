@@ -1,0 +1,11 @@
+{
+  "actionButtons": {
+    "commands": [
+      {
+        "name": "Start Frontend",
+        "color": "Yellow",
+        "command": "npm run dev"
+      }
+    ]
+  }
+}

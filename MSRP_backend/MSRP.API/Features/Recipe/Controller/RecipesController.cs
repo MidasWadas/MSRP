@@ -9,7 +9,6 @@ using MSRP.Application.Features.Recipes.Commands.DeleteRecipe.Command;
 using MSRP.Application.Features.Recipes.Commands.DeleteRecipe.Response;
 using MSRP.Application.Features.Recipes.Commands.UpdateRecipe.Command;
 using MSRP.Application.Features.Recipes.Commands.UpdateRecipe.Response;
-using MSRP.Application.Features.Recipes.DTO;
 using MSRP.Application.Features.Recipes.Queries.GetFavoriteRecipes.Query;
 using MSRP.Application.Features.Recipes.Queries.GetRecipe.Query;
 using MSRP.Application.Features.Recipes.Queries.GetRecipe.Response;
@@ -25,9 +24,9 @@ namespace MSRP.API.Features.Recipe.Controller
 	[ApiController]
 	public class RecipesController(IMediator mediator) : ControllerBase
 	{
-		[HttpGet("get-recipes")]
+		[HttpGet("get-all")]
 		[ProducesResponseType<GetRecipesResponse>(StatusCodes.Status200OK)]
-		public async Task<ActionResult<GetRecipesResponse>> GetRecipes()
+		public async Task<ActionResult<GetRecipesResponse>> GetAll()
 		{
 			return Ok(await mediator.Send(new GetRecipesQuery()));
 		}
