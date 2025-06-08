@@ -8,7 +8,8 @@ import {
 import { type Recipe } from './types';
 
 function fetchRecipesApi(): Promise<AxiosResponse<{ recipes: Recipe[] }>> {
-  return axios.get('https://localhost:44373/api/recipes/get-all');
+  const baseUrl = process.env.REACT_APP_API_BASE_URL || 'https://localhost:44373';
+  return axios.get(`${baseUrl}/api/recipes/get-all`);
 }
 
 function* fetchRecipesWorker() {
