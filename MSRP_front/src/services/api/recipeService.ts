@@ -10,12 +10,12 @@ export interface Recipe {
   cookTime: number;
   servings: number;
   difficulty: IdName;
-  cuisineType: IdName;
+  cuisine: IdName;
   mealType: IdName;
-  dietary: IdName[];
+  dietaries: IdName[];
   ingredients: string[];
   instructions: string[];
-  favorite: boolean;
+  createdByUserId: number;
 }
 
 export interface CuisineOption {

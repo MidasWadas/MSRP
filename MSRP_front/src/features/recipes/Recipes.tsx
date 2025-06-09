@@ -23,25 +23,8 @@ import useCuisineOptions from "hooks/useCuisineOptions";
 import useMealTypes from "hooks/useMealTypes";
 import useDifficultyOptions from "hooks/useDifficultyOptions";
 import useDietaryOptions from "hooks/useDietaryOptions";
-import { type IdName } from "types/common";
+import { type Recipe } from "./recipes-list/types";
 import { useRecipesList } from "./recipes-list/hooks/useRecipesList";
-
-export interface Recipe {
-	id: number;
-	title: string;
-	description: string;
-	imageUrl: string;
-	prepTime: number;
-	cookTime: number;
-	servings: number;
-	difficulty: IdName;
-	cuisineType: IdName;
-	mealType: IdName;
-	dietary: IdName[];
-	ingredients: string[];
-	instructions: string[];
-	favorite: boolean;
-}
 
 export interface FilterOptions {
 	mealType: number[];
@@ -172,12 +155,12 @@ const Recipes: React.FC = () => {
 			cookTime: 0,
 			servings: 1,
 			difficulty: difficultyOptions[0],
-			cuisineType: cuisineOptions[0],
+			cuisine: cuisineOptions[0],
 			mealType: mealTypes[0],
-			dietary: [],
+			dietaries: [],
 			ingredients: [],
 			instructions: [],
-			favorite: false,
+			createdByUserId: 1,
 		};
 
 		try {
@@ -250,32 +233,32 @@ const Recipes: React.FC = () => {
 		}
 	};
 
-	const toggleFavorite = async (recipeId: number) => {
-		const recipe = recipes.find((r) => r.id === recipeId);
-		if (!recipe) return;
+	// const toggleFavorite = async (recipeId: number) => {
+	// 	const recipe = recipes.find((r) => r.id === recipeId);
+	// 	if (!recipe) return;
 
-		const newFavoriteStatus = !recipe.favorite;
+	// 	const newFavoriteStatus = !recipe.favorite;
 
-		try {
-			await recipeService.updateRecipe(recipeId, recipe);
-			setRecipes((prevRecipes) =>
-				prevRecipes.map((recipe) =>
-					recipe.id === recipeId
-						? { ...recipe, favorite: newFavoriteStatus }
-						: recipe
-				)
-			);
-		} catch (err) {
-			console.error("Failed to update favorite status:", err);
-			setRecipes((prevRecipes) =>
-				prevRecipes.map((recipe) =>
-					recipe.id === recipeId
-						? { ...recipe, favorite: newFavoriteStatus }
-						: recipe
-				)
-			);
-		}
-	};
+	// 	try {
+	// 		await recipeService.updateRecipe(recipeId, recipe);
+	// 		setRecipes((prevRecipes) =>
+	// 			prevRecipes.map((recipe) =>
+	// 				recipe.id === recipeId
+	// 					? { ...recipe, favorite: newFavoriteStatus }
+	// 					: recipe
+	// 			)
+	// 		);
+	// 	} catch (err) {
+	// 		console.error("Failed to update favorite status:", err);
+	// 		setRecipes((prevRecipes) =>
+	// 			prevRecipes.map((recipe) =>
+	// 				recipe.id === recipeId
+	// 					? { ...recipe, favorite: newFavoriteStatus }
+	// 					: recipe
+	// 			)
+	// 		);
+	// 	}
+	// };
 
 	const handleFilterChange = (
 		filterType: "mealType" | "cuisineType" | "difficulty",
@@ -471,7 +454,7 @@ const Recipes: React.FC = () => {
 							<div className="recipe-item" key={recipe.id}>
 								<RecipeCard
 									recipe={recipe}
-									onFavoriteToggle={toggleFavorite}
+									//onFavoriteToggle={toggleFavorite}
 									detailMode={false}
 									onClick={() => setSelectedRecipe(recipe)}
 									onEdit={() => handleEditRecipe(recipe)}
@@ -517,7 +500,7 @@ const Recipes: React.FC = () => {
 				}}
 				onSave={isEditing ? handleSaveRecipe : () => setIsEditing(true)}
 				onDelete={handleDeleteRecipe}
-				onFavoriteToggle={toggleFavorite}
+				//onFavoriteToggle={toggleFavorite}
 				mode={isEditing ? "edit" : "view"}
 				dietaryOptions={dietaryOptions}
 				mealTypes={mealTypes}

@@ -39,7 +39,8 @@ public class Program
 
             // Register DbContext
             services.AddDbContext<ApiContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly("MSRP.DbMigrator")));
 
             // Register services
             services.AddTransient<DatabaseMigrationService>();

@@ -54,7 +54,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 15,
 		servings: 4,
 		difficulty: { id: 1, name: "Medium" },
-		cuisineType: { id: 1, name: "Italian" },
+		cuisine: { id: 1, name: "Italian" },
 		mealType: { id: 3, name: "Dinner" },
 		dietary: [
 			{ id: 4, name: "Dairy-Free" },
@@ -86,7 +86,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 5,
 		servings: 1,
 		difficulty: { id: 0, name: "Easy" },
-		cuisineType: { id: 5, name: "Mediterranean" },
+		cuisine: { id: 5, name: "Mediterranean" },
 		mealType: { id: 1, name: "Breakfast" },
 		dietary: [{ id: 1, name: "Vegetarian" }],
 		ingredients: ["Bread", "Avocado", "Salt", "Pepper", "Olive oil"],
@@ -108,7 +108,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 30,
 		servings: 4,
 		difficulty: { id: 1, name: "Medium" },
-		cuisineType: { id: 4, name: "Indian" },
+		cuisine: { id: 4, name: "Indian" },
 		mealType: { id: 3, name: "Dinner" },
 		dietary: [
 			{ id: 3, name: "Gluten-Free" },
@@ -140,7 +140,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 10,
 		servings: 4,
 		difficulty: { id: 0, name: "Easy" },
-		cuisineType: { id: 3, name: "Japanese" },
+		cuisine: { id: 3, name: "Japanese" },
 		mealType: { id: 3, name: "Dinner" },
 		dietary: [
 			{ id: 1, name: "Vegetarian" },
@@ -180,7 +180,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 15,
 		servings: 2,
 		difficulty: { id: 0, name: "Easy" },
-		cuisineType: { id: 5, name: "Mediterranean" },
+		cuisine: { id: 5, name: "Mediterranean" },
 		mealType: { id: 1, name: "Breakfast" },
 		dietary: [
 			{ id: 3, name: "Gluten-Free" },
@@ -217,7 +217,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 12,
 		servings: 4,
 		difficulty: { id: 2, name: "Medium" },
-		cuisineType: { id: 1, name: "Italian" },
+		cuisine: { id: 1, name: "Italian" },
 		mealType: { id: 5, name: "Dessert" },
 		dietary: [
 			{ id: 4, name: "Dairy-Free" },
@@ -254,7 +254,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 15,
 		servings: 2,
 		difficulty: { id: 0, name: "Easy" },
-		cuisineType: { id: 5, name: "Mediterranean" },
+		cuisine: { id: 5, name: "Mediterranean" },
 		mealType: { id: 2, name: "Lunch" },
 		dietary: [
 			{ id: 1, name: "Vegetarian" },
@@ -293,7 +293,7 @@ export const mockRecipes: Recipe[] = [
 		cookTime: 0,
 		servings: 6,
 		difficulty: { id: 0, name: "Easy" },
-		cuisineType: { id: 2, name: "Mexican" },
+		cuisine: { id: 2, name: "Mexican" },
 		mealType: { id: 4, name: "Snack" },
 		dietary: [
 			{ id: 1, name: "Vegetarian" },
