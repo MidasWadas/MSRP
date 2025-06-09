@@ -10,7 +10,11 @@ namespace MSRP.Infrastructure.Repositories
     {
         public async Task<List<RecipeDto>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await context.Recipes
+            // Pobierz całe dietaries do pamięci
+            var allDietaries = await context.Dietaries.ToListAsync(cancellationToken);
+
+            // Pobierz przepisy z joinami, bez żadnego filtra na DietariesIds
+            var recipes = await context.Recipes
                 .AsNoTracking()
                 .Join(context.Difficulties,
                     recipe => recipe.DifficultyId,
@@ -24,27 +28,33 @@ namespace MSRP.Infrastructure.Repositories
                     rdc => rdc.recipe.MealTypeId,
                     mealType => mealType.Id,
                     (rdc, mealType) => new { rdc.recipe, rdc.difficulty, rdc.cuisine, mealType })
-                .Select(x => new RecipeDto(
-                    x.recipe.Id,
-                    x.recipe.Title,
-                    x.recipe.Description,
-                    x.recipe.ImageUrl,
-                    x.recipe.PrepTime,
-                    x.recipe.CookTime,
-                    x.recipe.Servings,
-                    new RecipeDifficultyDto(x.difficulty.Id, x.difficulty.Name),
-                    new RecipeCuisineTypeDto(x.cuisine.Id, x.cuisine.Name),
-                    new RecipeMealTypeDto(x.mealType.Id, x.mealType.Name),
-                    context.Dietaries
-                        .Where(d => x.recipe.DietariesIds.Contains(d.Id))
-                        .Select(d => new RecipeDietaryOptionDto(d.Id, d.Name))
-                        .ToList(),
-                    x.recipe.Ingredients,
-                    x.recipe.Instructions,
-                    x.recipe.CreatedByUserId
-                ))
                 .ToListAsync(cancellationToken);
+
+            // Teraz zrób mapowanie w pamięci (LINQ to Objects)
+            var result = recipes.Select(x => new RecipeDto(
+                x.recipe.Id,
+                x.recipe.Title,
+                x.recipe.Description,
+                x.recipe.ImageUrl,
+                x.recipe.PrepTime,
+                x.recipe.CookTime,
+                x.recipe.Servings,
+                new RecipeDifficultyDto(x.difficulty.Id, x.difficulty.Name),
+                new RecipeCuisineDto(x.cuisine.Id, x.cuisine.Name),
+                new RecipeMealTypeDto(x.mealType.Id, x.mealType.Name),
+                allDietaries
+                    .Where(d => x.recipe.DietariesIds.Contains(d.Id))  // filtracja w C#
+                    .Select(d => new RecipeDietaryDto(d.Id, d.Name))
+                    .ToList(),
+                x.recipe.Ingredients,
+                x.recipe.Instructions,
+                x.recipe.CreatedByUserId
+            )).ToList();
+
+            return result;
+
         }
+
 
         public async Task<RecipeDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
@@ -72,11 +82,11 @@ namespace MSRP.Infrastructure.Repositories
                     x.recipe.CookTime,
                     x.recipe.Servings,
                     new RecipeDifficultyDto(x.difficulty.Id, x.difficulty.Name),
-                    new RecipeCuisineTypeDto(x.cuisine.Id, x.cuisine.Name),
+                    new RecipeCuisineDto(x.cuisine.Id, x.cuisine.Name),
                     new RecipeMealTypeDto(x.mealType.Id, x.mealType.Name),
                     context.Dietaries
                         .Where(d => x.recipe.DietariesIds.Contains(d.Id))
-                        .Select(d => new RecipeDietaryOptionDto(d.Id, d.Name))
+                        .Select(d => new RecipeDietaryDto(d.Id, d.Name))
                         .ToList(),
                     x.recipe.Ingredients,
                     x.recipe.Instructions,
@@ -139,11 +149,11 @@ namespace MSRP.Infrastructure.Repositories
                     x.recipe.CookTime,
                     x.recipe.Servings,
                     new RecipeDifficultyDto(x.difficulty.Id, x.difficulty.Name),
-                    new RecipeCuisineTypeDto(x.cuisine.Id, x.cuisine.Name),
+                    new RecipeCuisineDto(x.cuisine.Id, x.cuisine.Name),
                     new RecipeMealTypeDto(x.mealType.Id, x.mealType.Name),
                     context.Dietaries
                         .Where(d => x.recipe.DietariesIds.Contains(d.Id))
-                        .Select(d => new RecipeDietaryOptionDto(d.Id, d.Name))
+                        .Select(d => new RecipeDietaryDto(d.Id, d.Name))
                         .ToList(),
                     x.recipe.Ingredients,
                     x.recipe.Instructions,
@@ -178,11 +188,11 @@ namespace MSRP.Infrastructure.Repositories
                     x.recipe.CookTime,
                     x.recipe.Servings,
                     new RecipeDifficultyDto(x.difficulty.Id, x.difficulty.Name),
-                    new RecipeCuisineTypeDto(x.cuisine.Id, x.cuisine.Name),
+                    new RecipeCuisineDto(x.cuisine.Id, x.cuisine.Name),
                     new RecipeMealTypeDto(x.mealType.Id, x.mealType.Name),
                     context.Dietaries
                         .Where(d => x.recipe.DietariesIds.Contains(d.Id))
-                        .Select(d => new RecipeDietaryOptionDto(d.Id, d.Name))
+                        .Select(d => new RecipeDietaryDto(d.Id, d.Name))
                         .ToList(),
                     x.recipe.Ingredients,
                     x.recipe.Instructions,
@@ -217,11 +227,11 @@ namespace MSRP.Infrastructure.Repositories
                     x.recipe.CookTime,
                     x.recipe.Servings,
                     new RecipeDifficultyDto(x.difficulty.Id, x.difficulty.Name),
-                    new RecipeCuisineTypeDto(x.cuisine.Id, x.cuisine.Name),
+                    new RecipeCuisineDto(x.cuisine.Id, x.cuisine.Name),
                     new RecipeMealTypeDto(x.mealType.Id, x.mealType.Name),
                     context.Dietaries
                         .Where(d => x.recipe.DietariesIds.Contains(d.Id))
-                        .Select(d => new RecipeDietaryOptionDto(d.Id, d.Name))
+                        .Select(d => new RecipeDietaryDto(d.Id, d.Name))
                         .ToList(),
                     x.recipe.Ingredients,
                     x.recipe.Instructions,

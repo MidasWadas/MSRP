@@ -6,7 +6,7 @@ import MSelect from "components/atoms/MSelect/MSelect";
 import MTextarea from "components/atoms/MTextarea/MTextarea";
 import MDropdown from "components/organisms/MDropdown/MDropdown";
 import RecipeCard from "features/recipes/recipe-card/RecipeCard";
-import { type Recipe } from "features/recipes/Recipes";
+import { type Recipe } from "features/recipes/recipes-list/types";
 import "./RecipeModal.scss";
 import { type IdName } from "types/common";
 
@@ -16,7 +16,7 @@ interface RecipeModalProps {
 	onClose: () => void;
 	onSave?: (recipe: Recipe) => void;
 	onDelete: (recipeId: number) => void;
-	onFavoriteToggle: (recipeId: number) => void;
+	onFavoriteToggle?: (recipeId: number) => void;
 	mode: "view" | "edit";
 	cuisineOptions: IdName[];
 	mealTypes: IdName[];
@@ -47,16 +47,14 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 		if (recipe) {
 			setIngredientsText(recipe.ingredients.join("\n"));
 			setInstructionsText(recipe.instructions.join("\n"));
-			setSelectedDietary(recipe.dietary.map((d) => d.id));
+			setSelectedDietary(recipe.dietaries.map((d) => d.id));
 		}
 	}, [recipe]);
 
 	if (!editedRecipe) return null;
 
 	const cuisineTypeId =
-		typeof editedRecipe.cuisineType === "number"
-			? editedRecipe.cuisineType
-			: 1;
+		typeof editedRecipe.cuisine === "number" ? editedRecipe.cuisine : 1;
 
 	const mealTypeId =
 		typeof editedRecipe.mealType === "number" ? editedRecipe.mealType : 3;
@@ -71,7 +69,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 				instructions: instructionsText
 					.split("\n")
 					.filter((i) => i.trim() !== ""),
-				dietary: selectedDietary.map((id) => ({
+				dietaries: selectedDietary.map((id) => ({
 					id: id,
 					name:
 						dietaryOptions.find((option) => option.id === id)
@@ -192,11 +190,11 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 						/>
 						<MSelect
 							label="Cuisine Type"
-							value={editedRecipe.cuisineType.id}
+							value={editedRecipe.cuisine.id}
 							onChange={(e) =>
 								setEditedRecipe({
 									...editedRecipe,
-									cuisineType: cuisineOptions.find(
+									cuisine: cuisineOptions.find(
 										(option) =>
 											option.id ===
 											parseInt(e.target.value)

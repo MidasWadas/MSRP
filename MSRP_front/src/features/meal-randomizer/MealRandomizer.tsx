@@ -45,7 +45,7 @@ const MealRandomizer: React.FC<MealRandomizerProps> = ({ recipes }) => {
 
 			if (
 				filters.cuisineType.length > 0 &&
-				!filters.cuisineType.includes(recipe.cuisineType.id)
+				!filters.cuisineType.includes(recipe.cuisine.id)
 			) {
 				return false;
 			}

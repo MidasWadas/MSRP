@@ -11,10 +11,10 @@ namespace MSRP.Application.Features.Recipes.DTO
         int PrepTime,
         int CookTime,
         int Servings,
-        RecipeDifficultyDto RecipeDifficulty,
-        RecipeCuisineTypeDto RecipeCuisineType,
-        RecipeMealTypeDto RecipeMealType,
-        List<RecipeDietaryOptionDto> Dietaries,
+        RecipeDifficultyDto Difficulty,
+        RecipeCuisineDto Cuisine,
+        RecipeMealTypeDto MealType,
+        List<RecipeDietaryDto> Dietaries,
         List<string> Ingredients,
         List<string> Instructions,
         int CreatedByUserId
@@ -36,9 +36,9 @@ namespace MSRP.Application.Features.Recipes.DTO
                 recipe.CookTime,
                 recipe.Servings,
                 new RecipeDifficultyDto(difficulty.Id, difficulty.Name),
-                new RecipeCuisineTypeDto(cuisineType.Id, cuisineType.Name),
+                new RecipeCuisineDto(cuisineType.Id, cuisineType.Name),
                 new RecipeMealTypeDto(mealType.Id, mealType.Name),
-                dietaries.Select(d => new RecipeDietaryOptionDto(d.Id, d.Name)).ToList(),
+                dietaries.Select(d => new RecipeDietaryDto(d.Id, d.Name)).ToList(),
                 recipe.Ingredients,
                 recipe.Instructions,
                 recipe.CreatedByUserId
@@ -76,9 +76,9 @@ namespace MSRP.Application.Features.Recipes.DTO
                     recipeDto.PrepTime,
                     recipeDto.CookTime,
                     recipeDto.Servings,
-                    recipeDto.RecipeDifficulty.Id,
-                    recipeDto.RecipeCuisineType.Id,
-                    recipeDto.RecipeMealType.Id,
+                    recipeDto.Difficulty.Id,
+                    recipeDto.Cuisine.Id,
+                    recipeDto.MealType.Id,
                     recipeDto.Dietaries.Select(d => d.Id).ToList(),
                     recipeDto.Ingredients.ToList(),
                     recipeDto.Instructions.ToList(),
@@ -89,6 +89,6 @@ namespace MSRP.Application.Features.Recipes.DTO
         
     public sealed record RecipeDifficultyDto(int Id, string Name);
     public sealed record RecipeMealTypeDto(int Id, string Name);
-    public sealed record RecipeDietaryOptionDto(int Id, string Name);
-    public sealed record RecipeCuisineTypeDto(int Id, string Name);
+    public sealed record RecipeDietaryDto(int Id, string Name);
+    public sealed record RecipeCuisineDto(int Id, string Name);
 }

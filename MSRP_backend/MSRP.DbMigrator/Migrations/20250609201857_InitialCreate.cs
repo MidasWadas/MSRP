@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
-
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace MSRP.DbMigrator.Migrations
 {
@@ -17,7 +16,7 @@ namespace MSRP.DbMigrator.Migrations
                 name: "public");
 
             migrationBuilder.CreateTable(
-                name: "CuisineOptions",
+                name: "Cuisines",
                 schema: "public",
                 columns: table => new
                 {
@@ -28,11 +27,11 @@ namespace MSRP.DbMigrator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CuisineOptions", x => x.Id);
+                    table.PrimaryKey("PK_Cuisines", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DietaryOptions",
+                name: "Dietaries",
                 schema: "public",
                 columns: table => new
                 {
@@ -43,11 +42,11 @@ namespace MSRP.DbMigrator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DietaryOptions", x => x.Id);
+                    table.PrimaryKey("PK_Dietaries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MealTypeOptions",
+                name: "Difficulties",
                 schema: "public",
                 columns: table => new
                 {
@@ -57,11 +56,11 @@ namespace MSRP.DbMigrator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MealTypeOptions", x => x.Id);
+                    table.PrimaryKey("PK_Difficulties", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecepieDifficulties",
+                name: "MealTypes",
                 schema: "public",
                 columns: table => new
                 {
@@ -71,11 +70,11 @@ namespace MSRP.DbMigrator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecepieDifficulties", x => x.Id);
+                    table.PrimaryKey("PK_MealTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recepies",
+                name: "Recipes",
                 schema: "public",
                 columns: table => new
                 {
@@ -87,66 +86,17 @@ namespace MSRP.DbMigrator.Migrations
                     PrepTime = table.Column<int>(type: "integer", nullable: false),
                     CookTime = table.Column<int>(type: "integer", nullable: false),
                     Servings = table.Column<int>(type: "integer", nullable: false),
-                    Difficulty = table.Column<string>(type: "jsonb", nullable: false),
-                    CuisineType = table.Column<string>(type: "jsonb", nullable: false),
-                    MealType = table.Column<string>(type: "jsonb", nullable: false),
-                    Dietaries = table.Column<string>(type: "jsonb", nullable: false),
+                    DifficultyId = table.Column<int>(type: "integer", nullable: false),
+                    CuisineId = table.Column<int>(type: "integer", nullable: false),
+                    MealTypeId = table.Column<int>(type: "integer", nullable: false),
+                    DietariesIds = table.Column<List<int>>(type: "jsonb", nullable: false),
                     Ingredients = table.Column<string>(type: "text", nullable: false),
-                    Instruction = table.Column<string>(type: "text", nullable: false),
-                    IsFavorite = table.Column<bool>(type: "boolean", nullable: false)
+                    Instructions = table.Column<string>(type: "text", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recepies", x => x.Id);
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
-                table: "CuisineOptions",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Italian cuisine", "Italian" },
-                    { 2, "Mexican cuisine", "Mexican" },
-                    { 3, "Japanese cuisine", "Japanese" },
-                    { 4, "Indian cuisine", "Indian" },
-                    { 5, "Mediterranean cuisine", "Mediterranean" }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
-                table: "DietaryOptions",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { 1, "No meat, poultry, or seafood", "Vegetarian" },
-                    { 2, "No animal products", "Vegan" },
-                    { 3, "No gluten-containing ingredients", "Gluten-Free" },
-                    { 4, "No dairy products", "Dairy-Free" }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
-                table: "MealTypeOptions",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Breakfast" },
-                    { 2, "Lunch" },
-                    { 3, "Dinner" },
-                    { 4, "Snack" },
-                    { 5, "Dessert" }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
-                table: "RecepieDifficulties",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Easy" },
-                    { 2, "Medium" },
-                    { 3, "Hard" }
+                    table.PrimaryKey("PK_Recipes", x => x.Id);
                 });
         }
 
@@ -154,23 +104,23 @@ namespace MSRP.DbMigrator.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CuisineOptions",
+                name: "Cuisines",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "DietaryOptions",
+                name: "Dietaries",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "MealTypeOptions",
+                name: "Difficulties",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "RecepieDifficulties",
+                name: "MealTypes",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Recepies",
+                name: "Recipes",
                 schema: "public");
         }
     }

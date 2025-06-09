@@ -1,5 +1,5 @@
 import React from "react";
-import { type Recipe } from "../Recipes";
+import { type Recipe } from "../recipes-list/types";
 import MButton from "../../../components/atoms/MButton/MButton";
 import MCard from "../../../components/molecules/MCard/MCard";
 import "./RecipeCard.scss";
@@ -71,7 +71,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 
 	return (
 		<div className="recipe-card-wrapper">
-			{onFavoriteToggle && (
+			{/* {onFavoriteToggle && (
 				<MButton
 					className={`favorite-button ${
 						recipe.favorite ? "active" : ""
@@ -84,7 +84,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 					}
 					text={recipe.favorite ? "♥" : "♡"}
 				/>
-			)}
+			)} */}
 			<MCard
 				className={`recipe-card ${detailMode ? "detail-mode" : ""}`}
 				clickable={!detailMode && !!onClick}
@@ -150,11 +150,11 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 						/>
 						<MText
 							className="tag cuisine"
-							text={recipe.cuisineType.name}
+							text={recipe.cuisine.name}
 						/>
-						{Array.isArray(recipe.dietary) &&
-							recipe.dietary.length > 0 &&
-							recipe.dietary.map((diet, index) => (
+						{Array.isArray(recipe.dietaries) &&
+							recipe.dietaries.length > 0 &&
+							recipe.dietaries.map((diet, index) => (
 								<MText
 									key={index}
 									className="tag dietary"
